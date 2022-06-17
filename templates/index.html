@@ -10,8 +10,9 @@
     <title>Iya</title>
   </head>
   <body>
-    <button>pass</button>
-    <img src="{{imgUrl}}" width="200" height="200" />
-    <button>smash</button>
+    <button onclick="sendToServer(false)">pass</button>
+    <img id="icon" src="{{imgUrl}}" width="200" height="200" />
+    <button onclick="sendToServer(true)">smash</button>
+    <script src="static/index.js"></script>
   </body>
 </html>
