@@ -15,8 +15,23 @@ class Character():
         self.image = f"https://www.animecharactersdatabase.com/{image}"
         self.name = name
 
+        self.status = None
+
     def __str__(self) -> str:
         return {self.image}
+
+    def addStatus(self, newStatus):
+        self.status = newStatus
+
+    def formating(self):
+        return [self.name,
+                self.eye_color,
+                self.hair_color,
+                self.age,
+                self.sex,
+                self.hair_lenght,
+                self.status
+                ]
 
 
 class Database():
@@ -24,6 +39,9 @@ class Database():
         self.database = sqlite3.connect(file, check_same_thread=False)
         self.cursor = self.database.cursor()
         self.table = tableName
+
+    def numberEntry(self) -> int:
+        return len(self.search())
 
     def searchByCriteria(self, attribute: str, attributeValue: str) -> list:
         sqlCommand = f"SELECT * FROM {self.table} WHERE {attribute} = {attributeValue}"
