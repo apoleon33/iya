@@ -29,13 +29,14 @@ class CharacterList():
         if self.iterationCount < 25:
             self.actualObject = randomCharacterInt()
         else:
-            for i in listCharacterObject:
-                self.actualObject = i
+            for _ in listCharacterObject:
+                self.actualObject = choice(listCharacterObject)
                 knn.setNewEvaluation(self.actualObject.formating())
                 choix = knn.determine()
                 if choix:
-                    listCharacterObject.remove(self.actualObject)
                     break
+
+            listCharacterObject.remove(self.actualObject)
         self.iterationCount += 1
 
 
