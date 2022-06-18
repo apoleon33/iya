@@ -10,10 +10,15 @@
     <title>Iya</title>
   </head>
   <body>
-    <button onclick="sendToServer(false)">pass</button>
-    <img id="icon" src="{{imgUrl}}" />
-    <button onclick="sendToServer(true)">smash</button><br />
-    <h1 id="name">{{name}}</h1>
+    <main>
+      <button onclick="sendToServer(false)">pass</button>
+      <img id="icon" src="{{imgUrl}}" />
+      <button onclick="sendToServer(true)">smash</button>
+    </main>
+    <div id="info">
+      <h1 id="name">{{name}}</h1>
+      <h1 id="compt">{{iteration}}</h1>
+    </div>
     <script src="static/index.js"></script>
   </body>
 </html>
