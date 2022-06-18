@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, render_template, request
 from core import *
-from random import randint, choice
+from random import choice
 from database import *
+import matplotlib.pyplot as plt
 
 database = Database("mysqlite3.db", "characters")
 listCharacterObject = []
@@ -43,7 +44,16 @@ class CharacterList():
 app = Flask(__name__)
 
 anime = CharacterList()
-knn = Algorithm()
+knn = Algorithm(10)
+
+numberOfPass = [0]
+numberOfSmash = [0]
+
+
+def renderMatplotLib():
+    plt.plot(numberOfSmash)
+    plt.plot(numberOfPass)
+    plt.show()
 
 
 @app.route("/")
@@ -55,6 +65,14 @@ def response():
 def testfn():
     if request.method == 'POST':
         choice = request.get_json()
+
+        # matplotlib
+        if choice['status']:
+            numberOfPass.append(numberOfPass[-1])
+            numberOfSmash.append(numberOfSmash[-1] + 1)
+        else:
+            numberOfPass.append(numberOfPass[-1] + 1)
+            numberOfSmash.append(numberOfSmash[-1])
 
         anime.actualObject.addStatus(choice['status'])
         knn.addDataDoDataset(anime.actualObject.formating())
@@ -74,5 +92,5 @@ def newImage():
 
 
 if __name__ == "__main__":
-
     app.run(debug=False)
+    # renderMatplotLib() for a smash/pass evolution graph
