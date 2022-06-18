@@ -5,7 +5,7 @@ from matplotlib.pyplot import table
 
 
 class Character():
-    def __init__(self, id: int, eye_color: int, hair_color: int, age: int, sex: int, hair_lenght: int, image: str) -> None:
+    def __init__(self, id: int, eye_color: int, hair_color: int, age: int, sex: int, hair_lenght: int, image: str, name: str) -> None:
         self.id = id
         self.eye_color = eye_color
         self.hair_color = hair_color
@@ -13,6 +13,7 @@ class Character():
         self.sex = sex
         self.hair_lenght = hair_lenght
         self.image = f"https://www.animecharactersdatabase.com/{image}"
+        self.name = name
 
     def __str__(self) -> str:
         return {self.image}
@@ -28,7 +29,7 @@ class Database():
         sqlCommand = f"SELECT * FROM {self.table} WHERE {attribute} = {attributeValue}"
         return self.__searchDataBase__(sqlCommand)
 
-    def search(self):
+    def search(self) -> list:
         sqlCommand = f"SELECT * FROM {self.table}"
         return self.__searchDataBase__(sqlCommand)
 
@@ -50,5 +51,6 @@ class Database():
             character[3],
             character[4],
             character[5],
-            character[14]
+            character[14],
+            character[15]
         )

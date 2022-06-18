@@ -18,7 +18,7 @@ def randomCharacterInt() -> object:
 @app.route("/")
 def response():
     randomCharacter = randomCharacterInt()
-    return render_template('index.html', imgUrl=randomCharacter.image)
+    return render_template('index.html', imgUrl=randomCharacter.image, name=randomCharacter.name)
 
 
 @app.route('/choice', methods=['GET', 'POST'])
@@ -28,11 +28,15 @@ def testfn():    # GET request
         return jsonify(message)  # serialize and use JSON headers
 
 
-@app.route('/image', methods=['GET', 'POST'])
+@app.route('/image', methods=['GET'])
 def newImage():    # GET request
     if request.method == 'GET':
-        message = {'url': randomCharacterInt().image}
-        return jsonify(message)  # serialize and use JSON headers
+        newCharacter = randomCharacterInt()
+        message = {
+            'url': newCharacter.image,
+            'name': newCharacter.name
+        }
+        return jsonify(message)
 
 
 if __name__ == "__main__":

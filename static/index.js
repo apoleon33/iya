@@ -1,5 +1,7 @@
+const img = document.getElementById("icon");
+const nameCharacter = document.getElementById("name");
+
 function sendToServer(statusChoice) {
-  let img = document.getElementById("icon");
   let data = { status: statusChoice };
   fetch("/choice", {
     method: "POST",
@@ -13,5 +15,6 @@ function sendToServer(statusChoice) {
     })
     .then(function (text) {
       img.src = text.url;
+      nameCharacter.textContent = text.name;
     });
 }
