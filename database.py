@@ -1,6 +1,4 @@
 import sqlite3
-
-from matplotlib.pyplot import table
 # mysqlite3.db
 
 
@@ -18,7 +16,7 @@ class Character():
         self.status = None
 
     def __str__(self) -> str:
-        return {self.image}
+        return self.image
 
     def addStatus(self, newStatus):
         self.status = newStatus

@@ -1,5 +1,6 @@
 const img = document.getElementById("icon");
 const nameCharacter = document.getElementById("name");
+const iterationCount = document.getElementById("compt");
 
 function sendToServer(statusChoice) {
   let data = { status: statusChoice };
@@ -16,5 +17,6 @@ function sendToServer(statusChoice) {
     .then(function (text) {
       img.src = text.url;
       nameCharacter.textContent = text.name;
+      iterationCount.textContent = `iteration count: ${text.iteration}`;
     });
 }
