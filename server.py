@@ -26,7 +26,6 @@ class CharacterList():
         self.evaluate()
 
     def evaluate(self):
-        print(self.iterationCount)
         if self.iterationCount < 25:
             self.actualObject = randomCharacterInt()
         else:
@@ -35,7 +34,6 @@ class CharacterList():
                 knn.setNewEvaluation(self.actualObject.formating())
                 choix = knn.determine()
                 if choix:
-                    print(choix)
                     listCharacterObject.remove(self.actualObject)
                     break
         self.iterationCount += 1
@@ -59,10 +57,7 @@ def testfn():
 
         anime.actualObject.addStatus(choice['status'])
         knn.addDataDoDataset(anime.actualObject.formating())
-        print(knn.dataset)
-        print(anime.actualObject.name)
         anime.newCharacter()
-        print(anime.actualObject.name)
         return {"ok": True}
 
 
