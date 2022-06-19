@@ -12,12 +12,14 @@
   <body>
     <main>
       <button onclick="sendToServer(false)">pass</button>
-      <img id="icon" src="{{imgUrl}}" />
+      <br />
+      <div id="iconWrapper"><img id="icon" src="{{imgUrl}}" /></div>
+      <p></p>
       <button onclick="sendToServer(true)">smash</button>
     </main>
     <div id="info">
-      <h1 id="name">{{name}}</h1>
-      <h1 id="compt">{{iteration}}</h1>
+      <h1 id="name">character name: {{name}}</h1>
+      <h1 id="compt">iteration count: {{iteration}}</h1>
     </div>
     <script src="static/index.js"></script>
   </body>

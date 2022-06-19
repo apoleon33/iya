@@ -16,7 +16,7 @@ function sendToServer(statusChoice) {
     })
     .then(function (text) {
       img.src = text.url;
-      nameCharacter.textContent = text.name;
+      nameCharacter.textContent = `character name: ${text.name}`;
       iterationCount.textContent = `iteration count: ${text.iteration}`;
     });
 }
