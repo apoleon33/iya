@@ -27,7 +27,7 @@ class CharacterList():
         self.evaluate()
 
     def evaluate(self):
-        if self.iterationCount < 25:
+        if self.iterationCount < 50:
             self.actualObject = randomCharacterInt()
         else:
             for _ in listCharacterObject:
@@ -93,4 +93,5 @@ def newImage():
 
 if __name__ == "__main__":
     app.run(debug=False)
-    # renderMatplotLib() for a smash/pass evolution graph
+    # for a smash/pass evolution graph
+    # renderMatplotLib()
