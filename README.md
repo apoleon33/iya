@@ -1,4 +1,4 @@
-# iya <img align="right"  src="https://img.shields.io/tokei/lines/github/apoleon33/iya">
+# iya <img align="right"  src="https://img.shields.io/tokei/lines/github/apoleon33/iya"> <p><img align="right" src="https://wakatime.com/badge/user/f30b1401-c84a-455c-a952-90c59a25605e/project/ef57e9b1-bfdc-4be6-904d-dd9311bcab56.svg">
 
 A Smash-Or-Pass website to recommend you waifus
 
