@@ -2,6 +2,24 @@
 
 A Smash-Or-Pass website to recommend you waifus
 
+# Summary
+
+- [iya](#iya-)
+- [Summary](#summary)
+- [Warning: WIP](#warning-wip)
+- [TODO](#todo)
+- [Installation](#installation)
+
+# Warning: WIP
+
+Im not going to lie the algorithms are pretty lame (as well as the frontend and a bunch of other stuffs) at the moment so there is a big margin with what can be done and where we are at the moment
+
+# TODO
+
+- [ ] better-looking website
+- [ ] website online
+- [ ] way better algorithm
+
 # Installation
 
 Once the repository has been cloned:
