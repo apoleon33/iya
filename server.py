@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template, request
-from core import *
+from core.knn import Knn
+from core.tree import Tree
 from random import choice
 from database import *
 import matplotlib.pyplot as plt
@@ -9,6 +10,7 @@ listCharacterObject = []
 last = 101759
 for i in range(1, last):
     actualObject = database.returnCharacterById(i)
+    print(f"character with id n° {actualObject.id} added to list", end="\r")
     listCharacterObject.append(actualObject)
 
 
@@ -32,8 +34,8 @@ class CharacterList():
         else:
             for _ in listCharacterObject:
                 self.actualObject = choice(listCharacterObject)
-                knn.setNewEvaluation(self.actualObject.formating())
-                choix = knn.determine()
+                algo.setNewEvaluation(self.actualObject.formating())
+                choix = algo.determine()
                 if choix:
                     break
 
@@ -44,7 +46,8 @@ class CharacterList():
 app = Flask(__name__)
 
 anime = CharacterList()
-knn = Algorithm(10)
+
+algo = Knn(8)  # Or Tree() depending what algorithm you want to use
 
 numberOfPass = [0]
 numberOfSmash = [0]
@@ -75,7 +78,7 @@ def testfn():
             numberOfSmash.append(numberOfSmash[-1])
 
         anime.actualObject.addStatus(choice['status'])
-        knn.addDataDoDataset(anime.actualObject.formating())
+        algo.addDataDoDataset(anime.actualObject.formating())
         anime.newCharacter()
         return {"ok": True}
 
@@ -94,4 +97,4 @@ def newImage():
 if __name__ == "__main__":
     app.run(debug=False)
     # for a smash/pass evolution graph
-    # renderMatplotLib()
+    renderMatplotLib()

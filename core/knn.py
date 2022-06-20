@@ -2,7 +2,7 @@ from math import sqrt
 # the algorithm itself
 
 
-class Algorithm():
+class Knn():
     def __init__(self, precision: int = 7) -> None:
         self.dataset = []
         self.evaluation = []  # the data evaluated rn
