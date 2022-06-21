@@ -35,8 +35,10 @@ class CharacterList():
             for _ in listCharacterObject:
                 self.actualObject = choice(listCharacterObject)
                 algo.setNewEvaluation(self.actualObject.formating())
+                tree.setNewEvaluation(self.actualObject.formating())
                 choix = algo.determine()
-                if choix:
+                choixTree = tree.determine()
+                if choix or choixTree:  # both algoritm working
                     break
 
             listCharacterObject.remove(self.actualObject)
@@ -48,6 +50,7 @@ app = Flask(__name__)
 anime = CharacterList()
 
 algo = Knn(8)  # Or Tree() depending what algorithm you want to use
+tree = Tree()
 
 numberOfPass = [0]
 numberOfSmash = [0]
@@ -79,6 +82,8 @@ def testfn():
 
         anime.actualObject.addStatus(choice['status'])
         algo.addDataDoDataset(anime.actualObject.formating())
+        if anime.actualObject.status:  # add to the tree database only if its good since it work on an average
+            tree.addDataDoDataset(anime.actualObject.formating())
         anime.newCharacter()
         return {"ok": True}
 
@@ -88,13 +93,12 @@ def newImage():
     if request.method == 'GET':
         message = {
             'url': anime.actualObject.image,
-            'name': anime.actualObject.name,
-            'iteration': anime.iterationCount
+            'name': anime.actualObject.name
         }
         return jsonify(message)
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=False, host='0.0.0.0')
     # for a smash/pass evolution graph
     renderMatplotLib()
