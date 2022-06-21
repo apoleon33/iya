@@ -47,14 +47,6 @@ class CharacterList():
 
 app = Flask(__name__)
 
-anime = CharacterList()
-
-algo = Knn(8)  # Or Tree() depending what algorithm you want to use
-tree = Tree()
-
-numberOfPass = [0]
-numberOfSmash = [0]
-
 
 def renderMatplotLib():
     plt.plot(numberOfSmash)
@@ -64,6 +56,13 @@ def renderMatplotLib():
 
 @app.route("/")
 def response():
+    global numberOfPass, numberOfSmash, anime, algo, tree
+    anime = CharacterList()
+    algo = Knn(8)
+    tree = Tree()
+
+    numberOfPass = [0]
+    numberOfSmash = [0]
     return render_template('index.html', imgUrl=anime.actualObject.image, name=anime.actualObject.name, iteration=anime.iterationCount)
 
 
