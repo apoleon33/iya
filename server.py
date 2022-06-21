@@ -1,9 +1,9 @@
-from flask import Flask, jsonify, render_template, request
-from core.knn import Knn
-from core.tree import Tree
-from random import choice
-from database import *
 import matplotlib.pyplot as plt
+from database import *
+from random import choice
+from core.tree import Tree
+from core.knn import Knn
+from flask import Flask, jsonify, render_template, request
 
 database = Database("mysqlite3.db", "characters")
 listCharacterObject = []
@@ -12,6 +12,24 @@ for i in range(1, last):
     actualObject = database.returnCharacterById(i)
     print(f"character with id n° {actualObject.id} added to list", end="\r")
     listCharacterObject.append(actualObject)
+
+
+def findAge(value: int) -> str:
+    age = {
+        1: ["Child", 0],
+        3: ["Teen", 0],
+        4: ["Adult", 0],
+        5: ["Senior", 0],
+        6: ["Ageless", 0]
+    }
+
+    for i in age.keys():
+        age[i][1] = abs(value - i)
+    mini = 1
+    for y in age.keys():
+        if age[y][1] < age[mini][1]:
+            mini = y
+    return age[mini][0]
 
 
 def randomCharacterInt() -> object:
@@ -71,7 +89,7 @@ def testfn():
     if request.method == 'POST':
         choice = request.get_json()
 
-        # matplotlib
+        # statistic widget
         if choice['status']:
             numberOfPass.append(numberOfPass[-1])
             numberOfSmash.append(numberOfSmash[-1] + 1)
@@ -97,7 +115,23 @@ def newImage():
         return jsonify(message)
 
 
+@app.route('/stats', methods=['GET'])
+def newStat():
+    sexCriteria = ["Child", "Teen", "Adult", "Senior", "Ageless"]
+
+    try:
+        tree.makeAverage()
+    except ZeroDivisionError:
+        pass
+    print(int(tree.average["age"][0]))
+    message = {
+        'smash': numberOfSmash,
+        'pass': numberOfPass,
+        # -1 because a index list start at 0 but sex criteria go from 1 to 5 normally
+        'averageAge': findAge(int(tree.average["age"][0]))
+    }
+    return jsonify(message)
+
+
 if __name__ == "__main__":
     app.run(debug=False, host='0.0.0.0')
-    # for a smash/pass evolution graph
-    renderMatplotLib()

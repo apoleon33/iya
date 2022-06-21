@@ -24,12 +24,17 @@ Im not going to lie the algorithms are pretty lame (as well as the frontend and 
 
 Once the repository has been cloned:
 
+You need to have [sass](https://sass-lang.com/install) installed for preprocessing the css
+
 ```sh
 pip install -r requirements.txt
+sass static/style.scss static/style.css
 ```
 
 Then whenever you feel launching the server
 
 ```sh
 python3 server.py
+# or
+./launch.sh
 ```

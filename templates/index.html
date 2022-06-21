@@ -8,6 +8,7 @@
     />
     <link href="static/style.css" rel="stylesheet" type="text/css" />
     <title>Iya</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   </head>
   <body>
     <main>
@@ -20,6 +21,13 @@
     <div id="info">
       <h1 id="name">character name: {{name}}</h1>
       <h1 id="compt">iteration count: {{iteration}}</h1>
+    </div>
+    <div id="stats">
+      <div id="chartWrapper">
+        <h2>Statistics:</h2>
+        <canvas id="myChart"></canvas>
+        <h2 id="averageAge">average age smashed:</h2>
+      </div>
     </div>
     <script src="static/index.js"></script>
   </body>
