@@ -162,3 +162,5 @@ cython_debug/
 # preprocessed css:
 static/style.css
 *.css.map
+
+.vscode/

@@ -27,14 +27,7 @@ Once the repository has been cloned:
 You need to have [sass](https://sass-lang.com/install) installed for preprocessing the css
 
 ```sh
-pip install -r requirements.txt
-sass static/style.scss static/style.css
-```
-
-Then whenever you feel launching the server
-
-```sh
-python3 server.py
+make all # if you have never preprocessed the sass
 # or
-./launch.sh
+make run
 ```
