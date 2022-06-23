@@ -2,6 +2,24 @@ import sqlite3
 # mysqlite3.db
 
 
+def findAge(value: int) -> str:
+    age = {
+        1: ["Child", 0],
+        3: ["Teen", 0],
+        4: ["Adult", 0],
+        5: ["Senior", 0],
+        6: ["Ageless", 0]
+    }
+
+    for i in age.keys():
+        age[i][1] = abs(value - i)
+    mini = 1
+    for y in age.keys():
+        if age[y][1] < age[mini][1]:
+            mini = y
+    return age[mini][0]
+
+
 class Character():
     def __init__(self, id: int, eye_color: int, hair_color: int, age: int, sex: int, hair_lenght: int, image: str, name: str) -> None:
         self.id = id
