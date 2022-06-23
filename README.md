@@ -27,6 +27,12 @@ Once the repository has been cloned:
 You need to have [sass](https://sass-lang.com/install) installed for preprocessing the css
 
 ```sh
+make install
+```
+
+Then whenever you feel launching the server:
+
+```sh
 make all # if you have never preprocessed the sass
 # or
 make run
