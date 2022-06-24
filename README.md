@@ -6,11 +6,13 @@ A Smash-Or-Pass website to recommend you waifus
 
 # Summary
 
-- [iya](#iya-)
+- [iya](#iya)
 - [Summary](#summary)
 - [Warning: WIP](#warning-wip)
 - [TODO](#todo)
 - [Installation](#installation)
+  - [With make:](#with-make)
+  - [Whitout make](#whitout-make)
 
 # Warning: WIP
 
