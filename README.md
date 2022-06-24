@@ -28,6 +28,8 @@ Once the repository has been cloned:
 
 You need to have [sass](https://sass-lang.com/install) installed for preprocessing the css
 
+## With make:
+
 ```sh
 make install
 ```
@@ -39,3 +41,18 @@ make all # if you have never preprocessed the sass
 # or
 make run
 ```
+
+## Whitout make
+
+```sh
+sass static/style.scss static/style.css
+pip install -r requirements.txt
+```
+
+Then whenever you feel launching the server:
+
+```sh
+python3 server.py
+```
+
+Remember to re-preprocess the css everytime you modify the scss!
