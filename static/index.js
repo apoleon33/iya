@@ -10,7 +10,13 @@ var chart = new Chart("myChart", {
   type: "line",
 
   options: {
-    legend: { display: true },
+    legend: {
+      display: true,
+    },
+    title: {
+      display: true,
+      text: "choices made for the last 20 characters",
+    },
   },
 });
 
