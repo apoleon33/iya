@@ -9,6 +9,7 @@ body{
     background-color: $mainColor;
     display: flex;
     flex-direction: column;
+    margin: 0;
 
 }
 
@@ -59,19 +60,36 @@ main{
 
 #stats{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     
     align-items: center;
     justify-content: space-evenly;
-    padding: 1em;
+    background-color: $secondaryColor;
+    
+    width: 100%;
+    height: 100%;
 
-    #chartWrapper{
-        background-color: $secondaryColor;
-        width: 40vmin;
+    h1{color: $mainColor;}
+
+    #statWrapper{
+        width: 100%;
         padding: 1em;
-        border-radius: 10px;
-        color: $thirdColor;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        h2{color: $thirdColor;}
+
+        #chartWrapper{
+            align-items: center;
+            width: 90vmin;
+            padding: 1em;
+            border-radius: 10px;
+            color: $thirdColor;
+        }
     }
+
+
 }
 
 @media screen and (max-width: 815px) {
