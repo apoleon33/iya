@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 from database import *
 from random import choice
 from core.tree import Tree
@@ -48,21 +47,13 @@ class CharacterList():
 app = Flask(__name__)
 
 
-def renderMatplotLib():
-    plt.plot(numberOfSmash)
-    plt.plot(numberOfPass)
-    plt.show()
-
-
 @app.route("/")
 def response():
-    global numberOfPass, numberOfSmash, anime, algo, tree
+    global anime, algo, tree
     anime = CharacterList()
     algo = Knn(8)
     tree = Tree()
 
-    numberOfPass = [0]
-    numberOfSmash = [0]
     return render_template('index.html', imgUrl=anime.actualObject.image, name=anime.actualObject.name, iteration=anime.iterationCount)
 
 
@@ -70,14 +61,6 @@ def response():
 def testfn():
     if request.method == 'POST':
         choice = request.get_json()
-
-        # statistic widget
-        if choice['status']:
-            numberOfPass.append(numberOfPass[-1])
-            numberOfSmash.append(numberOfSmash[-1] + 1)
-        else:
-            numberOfPass.append(numberOfPass[-1] + 1)
-            numberOfSmash.append(numberOfSmash[-1])
 
         anime.actualObject.addStatus(choice['status'])
         algo.addDataDoDataset(anime.actualObject.formating())
@@ -99,17 +82,12 @@ def newImage():
 
 @app.route('/stats', methods=['GET'])
 def newStat():
-    sexCriteria = ["Child", "Teen", "Adult", "Senior", "Ageless"]
-
     try:
         tree.makeAverage()
     except ZeroDivisionError:
         pass
-    print(int(tree.average["age"][0]))
+
     message = {
-        'smash': numberOfSmash,
-        'pass': numberOfPass,
-        # -1 because a index list start at 0 but sex criteria go from 1 to 5 normally
         'averageAge': findAge(int(tree.average["age"][0]))
     }
     return jsonify(message)
