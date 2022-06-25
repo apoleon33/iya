@@ -3,6 +3,9 @@ import sqlite3
 
 
 def findAge(value: int) -> str:
+    '''
+    convert the value found in the database into one of the 5 existing equivalent 
+    '''
     age = {
         1: ["Child", 0],
         3: ["Teen", 0],
@@ -21,7 +24,21 @@ def findAge(value: int) -> str:
 
 
 class Character():
-    def __init__(self, id: int, eye_color: int, hair_color: int, age: int, sex: int, hair_lenght: int, image: str, name: str) -> None:
+    def __init__(self,
+                 id: int,
+                 eye_color: int,
+                 hair_color: int,
+                 age: int,
+                 sex: int,
+                 hair_lenght: int,
+                 image: str,
+                 name: str,
+                 mimikko: int,
+                 clothing: int
+                 ) -> None:
+        '''
+        The class instantiated for every character that will be sent to the frontend
+        '''
         self.id = id
         self.eye_color = eye_color
         self.hair_color = hair_color
@@ -30,6 +47,8 @@ class Character():
         self.hair_lenght = hair_lenght
         self.image = f"https://www.animecharactersdatabase.com/{image}"
         self.name = name
+        self.mimikko = mimikko  # human ears ?
+        self.clothing = clothing
 
         self.status = None
 
@@ -40,12 +59,16 @@ class Character():
         self.status = newStatus
 
     def formating(self):
+        '''
+        used to return a readable data organisation to the algorithm and not just the object
+        '''
         return [self.name,
                 self.eye_color,
                 self.hair_color,
                 self.age,
                 self.sex,
                 self.hair_lenght,
+                self.clothing,
                 self.status
                 ]
 
@@ -77,6 +100,9 @@ class Database():
         return returnList
 
     def returnCharacterById(self, id: int) -> object:
+        '''
+        retrieve only the useful informations of the selected t-uplet
+        '''
         character = self.searchByCriteria("id", str(id))[0]
         return Character(
             character[0],
@@ -86,5 +112,7 @@ class Database():
             character[4],
             character[5],
             character[14],
-            character[15]
+            character[15],
+            character[6],
+            character[22]
         )

@@ -1,5 +1,5 @@
 from math import sqrt
-# the algorithm itself
+# the algorithms itself
 
 
 class Knn():
@@ -22,15 +22,16 @@ class Knn():
         '''
         euclidian distance in 5D 
         '''
-        x1, y1, z1, a1, b1 = target[1], target[2], target[3], target[4], target[5]
-        x2, y2, z2, a2, b2 = self.evaluation[1], self.evaluation[
-            2], self.evaluation[3], self.evaluation[4], self.evaluation[5]
+        x1, y1, z1, a1, b1, c1 = target[1], target[2], target[3], target[4], target[5], target[6]
+        x2, y2, z2, a2, b2, c2 = self.evaluation[1], self.evaluation[
+            2], self.evaluation[3], self.evaluation[4], self.evaluation[5], self.evaluation[6]
         return sqrt(
             (x2-x1)**2 +
             (y2-y1)**2 +
             (z2-z1)**2 +
             (a2-a1)**2 +
-            (b2-b1)**2
+            (b2-b1)**2 +
+            (c2-c1)**2
         )
 
     def determine(self):
@@ -55,7 +56,7 @@ class Knn():
             dicBool[differentOutput] = 0
 
         for neighbour in nearestNeighbour:
-            dicBool[neighbour[6]] += 1
+            dicBool[neighbour[7]] += 1
 
         maximum = 0
         classe_cherche = ""

@@ -11,6 +11,7 @@ class Tree():
             "age": [0, 4],
             "hair_color": [0, 3],
             "hair_length": [0, 2],
+            "clothing": [0, 2],
             "eye_color": [0, 1]
         }
         self.score = 0
