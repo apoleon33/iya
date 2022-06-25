@@ -7,7 +7,7 @@ from flask import Flask, jsonify, render_template, request
 database = Database("mysqlite3.db", "characters")
 listCharacterObject = []
 last = 101759
-for i in range(1, last):
+for i in range(1, last):  # get all the characters and store them in a list
     actualObject = database.returnCharacterById(i)
     print(f"character with id n° {actualObject.id} added to list", end="\r")
     listCharacterObject.append(actualObject)
@@ -19,6 +19,9 @@ def randomCharacterInt() -> object:
 
 class CharacterList():
     def __init__(self) -> None:
+        '''
+        simple class to coordinate the database, the server, and the algorithms
+        '''
         self.actualObject = randomCharacterInt()
         self.historic = []
         self.iterationCount = 0
@@ -57,6 +60,7 @@ def response():
     return render_template('index.html', imgUrl=anime.actualObject.image, name=anime.actualObject.name, iteration=anime.iterationCount)
 
 
+# retrieve if the user has smashed/passed the last character sent
 @app.route('/choice', methods=['POST'])
 def testfn():
     if request.method == 'POST':

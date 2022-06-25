@@ -31,12 +31,13 @@ function sendToServer(statusChoice) {
 
   let data = { status: statusChoice };
   fetch("/choice", {
+    // send results to server.py
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
 
-  fetch("/image")
+  fetch("/image") // get the new image to display with the name
     .then(function (response) {
       return response.json();
     })
@@ -47,7 +48,7 @@ function sendToServer(statusChoice) {
       iterationCount.textContent = `iteration count: ${iteration}`;
     });
 
-  fetch("/stats")
+  fetch("/stats") // get the average age smashed
     .then(function (response) {
       return response.json();
     })

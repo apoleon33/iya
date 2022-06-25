@@ -30,7 +30,7 @@ Once the repository has been cloned:
 
 You need to have [sass](https://sass-lang.com/install) installed for preprocessing the css
 
-## With make:
+## With make
 
 ```sh
 make install
