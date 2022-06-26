@@ -1,4 +1,4 @@
-# Database explications
+# Database explications <img align="right" src="https://img.shields.io/github/size/apoleon33/iya/mysqlite3.db">
 
 How the database is ordered, and how iya is exploiting it.
 
