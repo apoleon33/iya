@@ -59,7 +59,7 @@ function sendToServer(statusChoice) {
         statistic(numberOfSmash.slice(-20), numberOfPass.slice(-20)); // last 20 elements of the array
         statAge.textContent = `average age smashed: ${text.averageAge}`;
         statSex.textContent = `average sex smashed: ${text.averageSex}`;
-        statCloth.textContent = `prefered coth wore: ${text.preferedCloth}`;
+        statCloth.textContent = `prefered clothes wore: ${text.preferedCloth}`;
       }
     });
 }
