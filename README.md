@@ -44,7 +44,7 @@ make all # if you have never preprocessed the sass
 make run
 ```
 
-## Whitout make
+## Without make
 
 ```sh
 sass static/style.scss static/style.css
