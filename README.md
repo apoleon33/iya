@@ -11,7 +11,7 @@ A Smash-Or-Pass website to recommend you waifus
 - [Warning: WIP](#warning-wip)
 - [TODO](#todo)
 - [Installation](#installation)
-  - [With make:](#with-make)
+  - [With make](#with-make)
   - [Whitout make](#whitout-make)
 
 # Warning: WIP
