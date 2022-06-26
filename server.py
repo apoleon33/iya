@@ -61,7 +61,7 @@ def response():
 
 
 # retrieve if the user has smashed/passed the last character sent
-@app.route('/choice', methods=['POST'])
+@app.route('/api/choice', methods=['POST'])
 def testfn():
     if request.method == 'POST':
         choice = request.get_json()
@@ -74,7 +74,7 @@ def testfn():
         return {"ok": True}
 
 
-@app.route('/image', methods=['GET'])
+@app.route('/api/image', methods=['GET'])
 def newImage():
     if request.method == 'GET':
         message = {
@@ -84,7 +84,7 @@ def newImage():
         return jsonify(message)
 
 
-@app.route('/stats', methods=['GET'])
+@app.route('/api/stats', methods=['GET'])
 def newStat():
     try:
         tree.makeAverage()
