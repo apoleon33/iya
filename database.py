@@ -2,25 +2,16 @@ import sqlite3
 # mysqlite3.db
 
 
-def findAge(value: int) -> str:
-    '''
-    convert the value found in the database into one of the 5 existing equivalent 
-    '''
-    age = {
-        1: ["Child", 0],
-        3: ["Teen", 0],
-        4: ["Adult", 0],
-        5: ["Senior", 0],
-        6: ["Ageless", 0]
-    }
+def convertNumberToValue(criteria: dict, value: int) -> str:
+    '''convert the value found in the database into what they mean '''
+    for i in criteria.keys():
+        criteria[i][1] = abs(value - i)
 
-    for i in age.keys():
-        age[i][1] = abs(value - i)
     mini = 1
-    for y in age.keys():
-        if age[y][1] < age[mini][1]:
+    for y in criteria.keys():
+        if criteria[y][1] < criteria[mini][1]:
             mini = y
-    return age[mini][0]
+    return criteria[mini][0]
 
 
 class Character():
@@ -116,3 +107,62 @@ class Database():
             character[6],
             character[22]
         )
+
+
+# criteria in the database and what they mean
+# from: https://bit.ly/3A6uvwM
+# in the form: {number in the db: ["equivalent", number of occurence]}
+age = {
+    1: ["Child", 0],
+    3: ["Teen", 0],
+    4: ["Adult", 0],
+    5: ["Senior", 0],
+    6: ["Ageless", 0]
+}
+
+sex = {
+    1: ["Male", 0],
+    2: ["Female", 0],
+    3: ["unknown/ambiguous", 0],
+    4: ["Androginous", 0],
+    5: ["None", 0],
+    6: ["Many", 0]
+}
+
+clothing = {  # not sure about 27/28/35/32
+    1: ["Maid", 0],
+    33: ["Waitress", 0],
+    24: ["White Lab Coat", 0],
+    2: ["School uni", 0],
+    6: ["Goth", 0],
+    29: ["Nurse", 0],
+    31: ["Nun", 0],
+    30: ["Preist", 0],
+    3: ["Casual", 0],
+    26: ["Short", 0],
+    27: ["Pantsandt", 0],
+    28: ["Pantsanddr", 0],
+    35: ["Pantsandlo", 0],
+    32: ["Jeansandth-shir", 0],
+    11: ["Suit and tie", 0],
+    34: ["Suit", 0],
+    4: ["Swimsuit", 0],
+    25: ["Bikini", 0],
+    5: ["Mini skirt", 0],
+    22: ["Skirt", 0],
+    19: ["Dress", 0],
+    7: ["Traditional", 0],
+    8: ["Japanese Kimono", 0],
+    12: ["Shrine Maiden", 0],
+    13: ["Chinese Dress", 0],
+    14: ["Martial Arts Uniform", 0],
+    9: ["Fantasy", 0],
+    10: ["Armor", 0],
+    15: ["Mage Clothing", 0],
+    16: ["Mechanic Clothes", 0],
+    17: ["Military Uniform", 0],
+    18: ["Pilots", 0],  # I guess...
+    20: ["Jacket", 0],
+    21: ["Winter Jacket", 0],
+    23: ["Other", 0]
+}

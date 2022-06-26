@@ -7,12 +7,12 @@ class Tree():
 
         self.average = {
             # "criteria": [average on dataset, coefficient]
-            "sex": [0, 5],
-            "age": [0, 4],
+            "eye_color": [0, 1],
             "hair_color": [0, 3],
+            "age": [0, 4],
+            "sex": [0, 5],
             "hair_length": [0, 2],
             "clothing": [0, 2],
-            "eye_color": [0, 1]
         }
         self.score = 0
 

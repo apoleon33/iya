@@ -92,7 +92,9 @@ def newStat():
         pass
 
     message = {
-        'averageAge': findAge(int(tree.average["age"][0]))
+        'averageAge': convertNumberToValue(age, int(tree.average["age"][0])),
+        'averageSex': convertNumberToValue(sex, int(tree.average["sex"][0])),
+        'preferedCloth': convertNumberToValue(clothing, int(tree.average["clothing"][0]))
     }
     return jsonify(message)
 

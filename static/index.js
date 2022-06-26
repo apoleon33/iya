@@ -2,6 +2,8 @@ const img = document.getElementById("icon");
 const nameCharacter = document.getElementById("name");
 const iterationCount = document.getElementById("compt");
 const statAge = document.getElementById("averageAge");
+const statSex = document.getElementById("averageSex");
+const statCloth = document.getElementById("preferedCloth");
 
 let iteration = 0;
 let [numberOfSmash, numberOfPass] = [[0], [0]];
@@ -48,7 +50,7 @@ function sendToServer(statusChoice) {
       iterationCount.textContent = `iteration count: ${iteration}`;
     });
 
-  fetch("/api/stats") // get the average age smashed
+  fetch("/api/stats") // get the average age/sex smashed
     .then(function (response) {
       return response.json();
     })
@@ -56,8 +58,8 @@ function sendToServer(statusChoice) {
       if (numberOfPass.length > 50) {
         statistic(numberOfSmash.slice(-20), numberOfPass.slice(-20)); // last 20 elements of the array
         statAge.textContent = `average age smashed: ${text.averageAge}`;
-      } else {
-        statAge.textContent = "statistics are not available under 50 choice";
+        statSex.textContent = `average sex smashed: ${text.averageSex}`;
+        statCloth.textContent = `prefered coth wore: ${text.preferedCloth}`;
       }
     });
 }
