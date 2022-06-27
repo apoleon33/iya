@@ -27,7 +27,6 @@ Im not going to lie the algorithms are pretty lame (as well as the frontend and 
 - [ ] way better algorithm
 - [ ] indication on where the character is coming from
 - [ ] nsfw toggle button
-- [ ] stats working
 - [ ] etc...
 
 # Installation

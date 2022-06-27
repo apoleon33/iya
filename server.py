@@ -31,7 +31,7 @@ class CharacterList():
         self.evaluate()
 
     def evaluate(self):
-        if self.iterationCount < 50:
+        if self.iterationCount < 50:  # the algorithm starts after 50 iterations
             self.actualObject = randomCharacterInt()
         else:
             for _ in listCharacterObject:
@@ -52,10 +52,11 @@ app = Flask(__name__)
 
 @app.route("/")
 def response():
-    global anime, algo, tree
+    global anime, algo, tree, stats
     anime = CharacterList()
     algo = Knn(8)
     tree = Tree()
+    stats = Statistic()
 
     return render_template('index.html', imgUrl=anime.actualObject.image, name=anime.actualObject.name, iteration=anime.iterationCount)
 
@@ -70,6 +71,8 @@ def testfn():
         algo.addDataDoDataset(anime.actualObject.formating())
         if anime.actualObject.status:  # add to the tree database only if its good since it work on an average
             tree.addDataDoDataset(anime.actualObject.formating())
+            stats.updateStats(anime.actualObject.age,
+                              anime.actualObject.sex, anime.actualObject.clothing)
         anime.newCharacter()
         return {"ok": True}
 
@@ -91,10 +94,12 @@ def newStat():
     except ZeroDivisionError:
         pass
 
+    statsToSend = stats.preferred()
+
     message = {
-        'averageAge': convertNumberToValue(age, int(tree.average["age"][0])),
-        'averageSex': convertNumberToValue(sex, int(tree.average["sex"][0])),
-        'preferedCloth': convertNumberToValue(clothing, int(tree.average["clothing"][0]))
+        'averageAge': statsToSend[0],
+        'averageSex': statsToSend[1],
+        'preferedCloth': statsToSend[2]
     }
     return jsonify(message)
 
