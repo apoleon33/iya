@@ -20,14 +20,14 @@ Im not going to lie the algorithms are pretty lame (as well as the frontend and 
 
 # TODO
 
--  better-looking website
+- better-looking website
   - image not changing width/height
-  -  better responsive design
--  website online
--  way better algorithm
--  indication on where the character is coming from
--  nsfw toggle button
--  etc...
+  - better responsive design
+- website online
+- way better algorithm
+- indication on where the character is coming from
+- nsfw toggle button
+- etc...
 
 # Installation
 
