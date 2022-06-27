@@ -1,6 +1,6 @@
 # iya
 
-<img src="https://img.shields.io/badge/status-under%20developement-9cf"> <img  src="https://img.shields.io/tokei/lines/github/apoleon33/iya"> <img src="https://badgen.net/github/dependabot/apoleon33/iya">
+<img src="https://img.shields.io/badge/status-under%20developement-9cf"> <img  src="https://img.shields.io/tokei/lines/github/apoleon33/iya"> <img src="https://badgen.net/github/dependabot/apoleon33/iya"> <img src="https://badgen.net/github/license/apoleon33/iya">
 
 A Smash-Or-Pass website to recommend you waifus
 
