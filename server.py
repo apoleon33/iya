@@ -1,15 +1,19 @@
 from database import *
-from random import choice
 from core.tree import Tree
 from core.knn import Knn
+
 from flask import Flask, jsonify, render_template, request
+from rich.progress import track
+from random import choice
+
+PORT = 5000  # port where flask is launched
 
 database = Database("mysqlite3.db", "characters")
 listCharacterObject = []
 last = 101759
-for i in range(1, last):  # get all the characters and store them in a list
+# get all the characters and store them in a list
+for i in track(range(1, last), description="Adding characters to list..."):
     actualObject = database.returnCharacterById(i)
-    print(f"character with id n° {actualObject.id} added to list", end="\r")
     listCharacterObject.append(actualObject)
 
 
@@ -105,4 +109,4 @@ def newStat():
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=False, host='0.0.0.0', port=PORT)
