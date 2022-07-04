@@ -3,9 +3,6 @@ import ReactDOM from "react-dom/client";
 import { App } from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-fetch("/").then((res) => {
-  console.log(res);
-});
 
 root.render(
   <React.StrictMode>

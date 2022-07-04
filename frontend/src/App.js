@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./style.scss";
 
 let [numberOfSmash, numberOfPass] = [[0], [0]];
+fetch("/").then((res) => {
+  console.log(res);
+});
 
 class App extends React.Component {
   constructor(props) {
@@ -15,7 +18,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // this.timerID = setInterval(() => this.getCharacterImg(), 100);
     this.getCharacterImg();
   }
 
