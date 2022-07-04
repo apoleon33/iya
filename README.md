@@ -69,5 +69,3 @@ Then whenever you feel launching the server:
 ```sh
 python3 server.py & cd frontend && npm start
 ```
-
-Remember to re-preprocess the css everytime you modify the scss!
