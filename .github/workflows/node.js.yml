@@ -16,7 +16,7 @@ jobs:
     
     defaults:
       run:
-        working-directory: ./frontend
+        working-directory: frontend
 
     strategy:
       matrix:
