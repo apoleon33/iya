@@ -1,10 +1,11 @@
-all:scss run
+all: back front
 
-run: 
-	python3 backend/server.py & cd frontend && npm start
+back: 
+	python3 backend/server.py
 
-scss:
-	sass static/style.scss static/style.css
+front:
+	cd frontend && npm start
 
-install: scss
-	pip install -r requirements.txt
+install:
+	pip install -r backend/requirements.txt
+	cd frontend && npm install

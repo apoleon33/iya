@@ -44,22 +44,30 @@ make install
 Then whenever you feel launching the server:
 
 ```sh
-make all # if you have never preprocessed the sass
-# or
-make run
+make -j2
+```
+
+`-j2` to launch simultaneously both frontend and backend
+
+Or:
+
+```sh
+make back # to launch the flask app
+make front # to launch the react app
 ```
 
 ## Without make
 
 ```sh
-sass static/style.scss static/style.css
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
+cd frontend
+npm install
 ```
 
 Then whenever you feel launching the server:
 
 ```sh
-python3 server.py
+python3 server.py & cd frontend && npm start
 ```
 
 Remember to re-preprocess the css everytime you modify the scss!
