@@ -13,7 +13,8 @@ class Character():
                  image: str,
                  name: str,
                  mimikko: int,
-                 clothing: int
+                 clothing: int,
+                 nsfw: int
                  ) -> None:
         '''
         The class instantiated for every character that will be sent to the frontend
@@ -28,16 +29,20 @@ class Character():
         self.name = name
         self.mimikko = mimikko  # human ears ?
         self.clothing = clothing
+        self.nsfw = nsfw
 
         self.status = None
 
     def __str__(self) -> str:
         return self.image
 
-    def addStatus(self, newStatus):
+    def addStatus(self, newStatus: bool):
         self.status = newStatus
 
-    def formating(self):
+    def getNsfwRating(self) -> bool:
+        return self.nsfw == 0
+
+    def formating(self) -> list:
         '''
         used to return a readable data organisation to the algorithm and not just the object
         '''
@@ -93,7 +98,8 @@ class Database():
             character[14],
             character[15],
             character[6],
-            character[22]
+            character[22],
+            character[-1]
         )
 
 

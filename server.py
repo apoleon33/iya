@@ -7,8 +7,10 @@ from rich.progress import track
 from random import choice
 
 PORT = 5000  # port where flask is launched
-
+# how many time the user will have to smash/pass random character before the agorithm
+NUMBER_ITERATION_BEFORE_ALGORITHM = 50
 database = Database("mysqlite3.db", "characters")
+
 listCharacterObject = []
 last = 101759
 # get all the characters and store them in a list
@@ -29,13 +31,15 @@ class CharacterList():
         self.actualObject = randomCharacterInt()
         self.historic = []
         self.iterationCount = 0
+        self.nsfw = False
 
     def newCharacter(self):
         self.historic.append(self.actualObject)
         self.evaluate()
 
     def evaluate(self):
-        if self.iterationCount < 50:  # the algorithm starts after 50 iterations
+        # the algorithm starts after a certain number of iterations
+        if self.iterationCount < NUMBER_ITERATION_BEFORE_ALGORITHM:
             self.actualObject = randomCharacterInt()
         else:
             for _ in listCharacterObject:
@@ -44,7 +48,8 @@ class CharacterList():
                 tree.setNewEvaluation(self.actualObject.formating())
                 choix = algo.determine()
                 choixTree = tree.determine()
-                if choix or choixTree:  # both algoritm working
+                # both algoritm working and being sfw if nsfw isn't enabled
+                if (choix or choixTree) and (self.nsfw == self.actualObject.getNsfwRating()):
                     break
 
             listCharacterObject.remove(self.actualObject)
