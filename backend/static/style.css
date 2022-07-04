@@ -1,0 +1,121 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: #363B52;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em;
+}
+main button {
+  background-color: #989ABF;
+  color: #731C22;
+  border-radius: 10px;
+  width: 10vmin;
+  height: 5vmin;
+  font-size: large;
+  border: none;
+}
+main button:hover {
+  cursor: pointer;
+  border: 2px solid #989ABF;
+  color: #989ABF;
+  background-color: #363B52;
+  transition: 200ms;
+}
+main #iconWrapper {
+  height: 50vmin;
+}
+main #iconWrapper #icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  transition: 600ms;
+}
+
+#info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #989ABF;
+}
+
+#stats {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #989ABF;
+  width: 100%;
+  height: 100%;
+}
+#stats h1 {
+  color: #363B52;
+}
+#stats #statWrapper {
+  width: 100%;
+  padding: 1em;
+  display: flex;
+  justify-content: space-around;
+}
+#stats #statWrapper h2 {
+  color: #731C22;
+}
+#stats #statWrapper #chartWrapper {
+  align-items: center;
+  width: 90vmin;
+  padding: 1em;
+  border-radius: 10px;
+  color: #731C22;
+}
+
+@media screen and (max-width: 815px) {
+  body {
+    align-items: center;
+    justify-content: center;
+  }
+
+  main {
+    flex-direction: column-reverse;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+    padding: 0;
+  }
+  main button {
+    font-size: small;
+    width: 15vmin;
+    height: 10vmin;
+  }
+  main button:active {
+    border: 2px solid #989ABF;
+    color: #989ABF;
+    background-color: #363B52;
+    transition: 500ms;
+  }
+
+  #info {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #statWrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+  #statWrapper #chartWrapper {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 815px) {
+  #statWrapper {
+    flex-direction: row;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

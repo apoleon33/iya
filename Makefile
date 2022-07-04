@@ -1,7 +1,7 @@
 all:scss run
 
 run: 
-	python3 server.py
+	python3 backend/server.py & cd frontend && npm start
 
 scss:
 	sass static/style.scss static/style.css

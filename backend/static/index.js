@@ -91,3 +91,8 @@ function statistic(smash, pass) {
   };
   chart.update();
 }
+
+var swiper = new Swiper(".mySwiper", {
+  effect: "cards",
+  grabCursor: true,
+});
