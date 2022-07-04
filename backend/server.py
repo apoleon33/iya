@@ -2,11 +2,11 @@ from database import *
 from core.tree import Tree
 from core.knn import Knn
 
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, request
 from rich.progress import track
 from random import choice
 
-PORT = 5000  # port where flask is launched
+PORT = 3033  # port where flask is launched
 # how many time the user will have to smash/pass random character before the agorithm
 NUMBER_ITERATION_BEFORE_ALGORITHM = 50
 database = Database("mysqlite3.db", "characters")
@@ -66,8 +66,7 @@ def response():
     algo = Knn(8)
     tree = Tree()
     stats = Statistic()
-
-    return render_template('index.html', imgUrl=anime.actualObject.image, name=anime.actualObject.name, iteration=anime.iterationCount)
+    return {"ok": True}
 
 
 # retrieve if the user has smashed/passed the last character sent
@@ -75,6 +74,7 @@ def response():
 def testfn():
     if request.method == 'POST':
         choice = request.get_json()
+        print(choice)
 
         anime.actualObject.addStatus(choice['status'])
         algo.addDataDoDataset(anime.actualObject.formating())
