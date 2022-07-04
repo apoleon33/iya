@@ -33,8 +33,6 @@ Im not going to lie the algorithms are pretty lame (as well as the frontend and 
 
 Once the repository has been cloned:
 
-You need to have [sass](https://sass-lang.com/install) installed for preprocessing the css
-
 ## With make
 
 ```sh
