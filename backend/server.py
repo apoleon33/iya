@@ -19,6 +19,23 @@ for i in track(range(1, last), description="Adding characters to list..."):
     listCharacterObject.append(actualObject)
 
 
+def initVariables():
+    ''' Initialise all the variables when its the first time the user is visiting the website '''
+    global anime, algo, tree, stats
+    anime = CharacterList()
+    algo = Knn(8)
+    tree = Tree()
+    stats = Statistic()
+
+
+def sendMessage() -> dict:
+    ''' Return the right dictionnary that will be sent to frontend by /api/image '''
+    return {
+        'url': anime.actualObject.image,
+        'name': anime.actualObject.name
+    }
+
+
 def randomCharacterInt() -> object:
     return choice(listCharacterObject)
 
@@ -61,12 +78,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def response():
-    global anime, algo, tree, stats
-    anime = CharacterList()
-    algo = Knn(8)
-    tree = Tree()
-    stats = Statistic()
-    return {"ok": True}
+    return {"received": True}
 
 
 # retrieve if the user has smashed/passed the last character sent
@@ -74,7 +86,6 @@ def response():
 def testfn():
     if request.method == 'POST':
         choice = request.get_json()
-        print(choice)
 
         anime.actualObject.addStatus(choice['status'])
         algo.addDataDoDataset(anime.actualObject.formating())
@@ -83,17 +94,17 @@ def testfn():
             stats.updateStats(anime.actualObject.age,
                               anime.actualObject.sex, anime.actualObject.clothing)
         anime.newCharacter()
-        return {"ok": True}
+        return {"received": True}
 
 
 @app.route('/api/image', methods=['GET'])
 def newImage():
-    if request.method == 'GET':
-        message = {
-            'url': anime.actualObject.image,
-            'name': anime.actualObject.name
-        }
-        return jsonify(message)
+    try:  # if its the first time launching the server it would throw an error
+        message = sendMessage()
+    except NameError:
+        initVariables()
+        message = sendMessage()
+    return jsonify(message)
 
 
 @app.route('/api/stats', methods=['GET'])

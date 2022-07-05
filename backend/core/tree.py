@@ -24,6 +24,7 @@ class Tree():
         self.dataset.append(data)
 
     def makeAverage(self):
+        ''' Actualise the dictionnary self.database with the new elements wich have been added to the dataset'''
         for element in self.dataset:
             i = 1
             for criteria in self.average.keys():
