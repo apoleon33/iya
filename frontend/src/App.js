@@ -1,23 +1,22 @@
 import React from "react";
-import "./style.scss";
+import Info from "./Info";
 
 let [numberOfSmash, numberOfPass] = [[0], [0]];
-fetch("/").then((res) => {
-  console.log(res);
-});
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       url: "",
-      name: "",
     };
     this.smash = this.smash.bind(this);
     this.pass = this.pass.bind(this);
   }
 
   componentDidMount() {
+    fetch("/").then((res) => {
+      console.log(res.ok);
+    });
     this.getCharacterImg();
   }
 
@@ -71,28 +70,27 @@ class App extends React.Component {
 
   render() {
     return (
-      <main>
-        <button onClick={this.pass}>pass</button>
-        <p></p>
-        <div id="iconWrapper">
-          <img id="icon" src={this.state.url} alt="a waifu" />
-        </div>
-        <p></p>
-        <button onClick={this.smash}>smash</button>
-      </main>
+      <div id="mainAndInfoWrapper">
+        <main>
+          <button onClick={this.pass}>pass</button>
+          <p></p>
+          <div id="iconWrapper">
+            <img
+              id="icon"
+              src={this.state.url}
+              alt={`Failed to render url ${this.state.url} :(`}
+            />
+          </div>
+          <p></p>
+          <button onClick={this.smash}>smash</button>
+        </main>
+        <Info name={this.state.name} />
+      </div>
     );
   }
 }
 
-function Info() {
-  return (
-    <div id="info">
-      <h1 id="name">character name:</h1>
-      <h1 id="compt">iteration count:</h1>
-    </div>
-  );
-}
-
+/*
 function Statistic() {
   return (
     <div id="stats">
@@ -109,6 +107,6 @@ function Statistic() {
       </div>
     </div>
   );
-}
+}*/
 
-export { App, Info, Statistic };
+export default App;

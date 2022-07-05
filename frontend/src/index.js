@@ -1,12 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./App";
+
+import App from "./App";
+
+import "./style.scss";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
     <App />
+
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
       <path
         fill="#989ABF"
@@ -17,4 +21,4 @@ root.render(
   </React.StrictMode>
 );
 
-// <Statistc /> and <Info /> soon
+// <Statistc /> and  soon
