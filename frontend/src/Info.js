@@ -1,4 +1,5 @@
 import React from "react";
+import Toggle from "react-toggle";
 
 class Info extends React.Component {
   constructor(props) {
@@ -6,10 +7,13 @@ class Info extends React.Component {
     this.state = {
       iteration: 0,
       oldName: this.props.name,
+      nsfwStatus: false,
     };
 
     this.getCharacterNameAndIteration =
       this.getCharacterNameAndIteration.bind(this);
+
+    this.nsfwToggle = this.nsfwToggle.bind(this);
   }
 
   getCharacterNameAndIteration() {
@@ -25,11 +29,24 @@ class Info extends React.Component {
     setInterval(() => this.getCharacterNameAndIteration(), 100);
   }
 
+  nsfwToggle() {
+    console.log(this.state.nsfwStatus);
+    this.setState((prevState) => ({
+      nsfwStatus: !prevState.nsfwStatus,
+    }));
+    fetch("/api/nsfw");
+  }
+
   render() {
     return (
       <div id="info">
         <h1 id="name">character name: {this.state.oldName}</h1>
         <h1 id="compt">iteration count: {this.state.iteration}</h1>
+        <h1> nsfw allowed:</h1>
+        <Toggle
+          defaultChecked={this.state.nsfwStatus}
+          onChange={this.nsfwToggle}
+        />
       </div>
     );
   }

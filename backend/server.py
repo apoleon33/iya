@@ -1,3 +1,4 @@
+from grpc import Status
 from database import *
 from core.tree import Tree
 from core.knn import Knn
@@ -132,6 +133,13 @@ def newStat():
         'preferedCloth': statsToSend[2]
     }
     return jsonify(message)
+
+
+@app.route('/api/nsfw', methods=['GET'])
+def changeNsfw():
+    anime.nsfw = not anime.nsfw
+    print(anime.nsfw)
+    return jsonify({"status": "ok"})
 
 
 if __name__ == "__main__":

@@ -40,7 +40,7 @@ class Character():
         self.status = newStatus
 
     def getNsfwRating(self) -> bool:
-        return self.nsfw == 0
+        return self.nsfw >= 1
 
     def formating(self) -> list:
         '''

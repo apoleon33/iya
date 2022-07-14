@@ -4,6 +4,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 
 import "./style.scss";
+import "./react-toggle.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
