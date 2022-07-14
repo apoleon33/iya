@@ -42,16 +42,7 @@ make install
 Then whenever you feel launching the server:
 
 ```sh
-make -j2
-```
-
-`-j2` to launch simultaneously both frontend and backend
-
-Or:
-
-```sh
-make back # to launch the flask app
-make front # to launch the react app
+make
 ```
 
 ## Without make
@@ -65,5 +56,5 @@ npm install
 Then whenever you feel launching the server:
 
 ```sh
-python3 server.py & cd frontend && npm start
+python3 server.py
 ```

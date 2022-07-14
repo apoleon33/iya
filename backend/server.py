@@ -5,6 +5,8 @@ from core.knn import Knn
 from flask import Flask, jsonify, request
 from rich.progress import track
 from random import choice
+from multiprocessing import Process
+import os
 
 PORT = 3033  # port where flask is launched
 # how many time the user will have to smash/pass random character before the agorithm
@@ -17,6 +19,14 @@ last = 101759
 for i in track(range(1, last), description="Adding characters to list..."):
     actualObject = database.returnCharacterById(i)
     listCharacterObject.append(actualObject)
+
+
+def launchFrontend():
+    os.system("cd frontend && npm start")
+
+
+def launchBackend(debug: bool, host: str = '0.0.0.0', port: int = PORT):
+    app.run(debug=debug, host=host, port=port)
 
 
 def initVariables():
@@ -125,4 +135,8 @@ def newStat():
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0', port=PORT)
+    frontend = Process(target=launchFrontend)
+    backend = Process(target=launchBackend, args=(False, '0.0.0.0', PORT))
+
+    backend.start()
+    frontend.start()

@@ -1,10 +1,5 @@
-all: back front
-
-back: 
+run:
 	python3 backend/server.py
-
-front:
-	cd frontend && npm start
 
 install:
 	pip install -r backend/requirements.txt
