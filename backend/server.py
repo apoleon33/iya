@@ -6,7 +6,8 @@ from flask import Flask, jsonify, request
 from rich.progress import track
 from random import choice
 from multiprocessing import Process
-import os
+from os import system
+from time import sleep
 
 PORT = 3033  # port where flask is launched
 # how many time the user will have to smash/pass random character before the agorithm
@@ -22,7 +23,10 @@ for i in track(range(1, last), description="Adding characters to list..."):
 
 
 def launchFrontend():
-    os.system("cd frontend && npm start")
+    system("cd frontend && npm start")
+
+
+def launchElectron(): return system("cd frontend && npm run electron")
 
 
 def launchBackend(debug: bool, host: str = '0.0.0.0', port: int = PORT):
@@ -81,6 +85,13 @@ class CharacterList():
 
             listCharacterObject.remove(self.actualObject)
         self.iterationCount += 1
+
+    def makeFivePrediction(self) -> list:
+        self.predictionList = []
+        for predi in range(5):
+            self.newCharacter()
+            self.predictionList.append(self.actualObject)
+        return self.predictionList
 
 
 app = Flask(__name__)
@@ -143,6 +154,9 @@ def changeNsfw():
 if __name__ == "__main__":
     frontend = Process(target=launchFrontend)
     backend = Process(target=launchBackend, args=(False, '0.0.0.0', PORT))
+    electron = Process(target=launchElectron)
 
     backend.start()
     frontend.start()
+    sleep(5)  # wait until the react app is perfectly launched
+    electron.start()
