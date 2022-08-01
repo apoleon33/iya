@@ -8,6 +8,7 @@ body{
     font-family: $font;
     background-color: $mainColor;
     margin: 0;
+    overflow-x: hidden;
 
     #root{
         margin: 0;
@@ -42,6 +43,8 @@ main{
             transition: 200ms;
         }
     }
+
+
 
     #iconWrapper{
         height: 50vmin;
