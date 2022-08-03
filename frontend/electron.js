@@ -15,8 +15,8 @@ let mainWindow;
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
-    width: 1000,
-    height: 800,
+    width: 815,
+    height: 830,
     webPreferences: {
       devTools: false /*Disables Devtools*/,
     },

@@ -102,6 +102,9 @@ class App extends React.Component {
                   src={this.state.url}
                   alt={`Failed to render url ${this.state.url} :(`}
                 />
+                <div id="blurEffect">
+                  <h3 id="name">{this.state.name}</h3>
+                </div>
               </div>
             </TinderCard>
           </div>

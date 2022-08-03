@@ -1,8 +1,9 @@
-$mainColor: #363B52;
-$secondaryColor: #989ABF;
-$thirdColor: #731C22;
+$mainColor: #222831 ; // #363B52
+$secondaryColor: #393e46 ; // #989ABF
+$thirdColor: #fd7014; // #731C22
 
 $font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;
+$text: #eeeeee;
 
 body{
     font-family: $font;
@@ -16,6 +17,10 @@ body{
         flex-direction: column;
 
     }
+    svg{
+        position: absolute;
+        bottom: 0;
+    }
 
 }
 
@@ -26,8 +31,8 @@ main{
     padding: 1em;
 
     button{
-        background-color:  $secondaryColor;
-        color: $thirdColor;
+        background-color:  $thirdColor;
+        color: $text; // $thirdColor
         border-radius: 10px;
         width: 10vmin;
         height: 5vmin;
@@ -38,7 +43,7 @@ main{
             cursor: pointer;
 
             border: 2px solid $secondaryColor;
-            color: $secondaryColor;
+            color: $thirdColor;
             background-color: $mainColor;
             transition: 200ms;
         }
@@ -48,6 +53,9 @@ main{
 
     #iconWrapper{
         height: 50vmin;
+        max-width: 50vmin;
+        position: relative;
+        text-align: center;
 
         #icon{
             width: 100%;
@@ -55,6 +63,31 @@ main{
             border-radius: 10px;
             transition: 600ms;
         }
+
+        #blurEffect{
+            position: absolute;
+            display: inline-block;
+            bottom: 0px;
+            left: 0px;
+            border-radius: 10px;
+            //backdrop-filter: blur(50px);
+            height: 60px;
+            width: 100%;
+            background: transparent;
+            background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,1) 100%);
+
+            #name{
+                position: absolute;
+                bottom: 0px;
+                left: 15px;
+                color: $secondaryColor;
+                // mix-blend-mode: difference;
+                font-weight: 700;
+                
+            }
+        }
+
+
     }
 }
 
@@ -63,7 +96,7 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    color: $secondaryColor;
+    color: $text;
 }
 
 #stats{
@@ -99,7 +132,7 @@ main{
 
 
 }
-
+/*
 @media screen and (max-width: 815px) { // mobile version of the website
     body{
         align-items: center;
@@ -140,6 +173,6 @@ main{
         }
     }
 
-}
+}*/
 
 @media screen and (min-width: 815px) { #statWrapper{flex-direction: row;}}

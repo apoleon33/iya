@@ -40,8 +40,7 @@ class Info extends React.Component {
   render() {
     return (
       <div id="info">
-        <h1 id="name">character name: {this.state.oldName}</h1>
-        <h1 id="compt">iteration count: {this.state.iteration}</h1>
+        <h1 id="compt">Iteration count: {this.state.iteration}</h1>
         <h1> nsfw allowed:</h1>
         <Toggle
           defaultChecked={this.state.nsfwStatus}
