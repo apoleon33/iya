@@ -160,3 +160,8 @@ if __name__ == "__main__":
     frontend.start()
     sleep(5)  # wait until the react app is perfectly launched
     electron.start()
+
+    # when the electron app is closed, it also close the api and the react app
+    electron.join()
+    backend.kill()
+    frontend.kill()
