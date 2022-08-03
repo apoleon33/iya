@@ -132,47 +132,5 @@ main{
 
 
 }
-/*
-@media screen and (max-width: 815px) { // mobile version of the website
-    body{
-        align-items: center;
-        justify-content: center;
-    }
-
-    main{
-        flex-direction: column-reverse;
-        align-items: space-evenly;
-        justify-content: space-evenly;
-        padding: 0;
-
-        button{
-            font-size: small;
-            width: 15vmin;
-            height: 10vmin;
-
-            &:active{
-                border: 2px solid $secondaryColor;
-                color: $secondaryColor;
-                background-color: $mainColor;
-                transition: 500ms;
-            }
-        }
-    }
-
-    #info{
-        flex-direction: column;
-        text-align: center;
-    }
-
-    #statWrapper{
-        flex-direction: column;
-        text-align: center;
-
-        #chartWrapper{
-            width: 100%;
-        }
-    }
-
-}*/
 
 @media screen and (min-width: 815px) { #statWrapper{flex-direction: row;}}
