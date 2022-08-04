@@ -2,12 +2,12 @@ from database import *
 from core.tree import Tree
 from core.knn import Knn
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from rich.progress import track
 from random import choice
 from multiprocessing import Process
 from os import system
-from time import sleep
+import sys
 
 PORT = 3033  # port where flask is launched
 # how many time the user will have to smash/pass random character before the agorithm
@@ -26,11 +26,15 @@ def launchFrontend():
     system("cd frontend && npm start")
 
 
-def launchElectron(): return system("cd frontend && npm run electron")
-
-
 def launchBackend(debug: bool, host: str = '0.0.0.0', port: int = PORT):
     app.run(debug=debug, host=host, port=port)
+
+
+def checkArgs() -> bool:
+    '''
+    check if the server is meant to start the ui or not
+    '''
+    return len(sys.argv) > 1 and (sys.argv[1] == "-p" or sys.argv[1] == "--production")
 
 
 def initVariables():
@@ -94,12 +98,15 @@ class CharacterList():
         return self.predictionList
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="build", static_folder="build/static/")
 
 
 @app.route("/")
 def response():
-    return {"received": True}
+    if checkArgs():
+        return render_template('index.html')
+    else:
+        return {"received": True}
 
 
 # retrieve if the user has smashed/passed the last character sent
@@ -154,14 +161,8 @@ def changeNsfw():
 if __name__ == "__main__":
     frontend = Process(target=launchFrontend)
     backend = Process(target=launchBackend, args=(False, '0.0.0.0', PORT))
-    electron = Process(target=launchElectron)
 
     backend.start()
-    frontend.start()
-    sleep(5)  # wait until the react app is perfectly launched
-    electron.start()
 
-    # when the electron app is closed, it also close the api and the react app
-    electron.join()
-    backend.kill()
-    frontend.kill()
+    if not checkArgs():
+        frontend.start()
