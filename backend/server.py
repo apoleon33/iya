@@ -21,6 +21,8 @@ for i in track(range(1, last), description="Adding characters to list..."):
     actualObject = database.returnCharacterById(i)
     listCharacterObject.append(actualObject)
 
+# process functions
+
 
 def launchFrontend():
     system("cd frontend && npm start")
@@ -31,9 +33,7 @@ def launchBackend(debug: bool, host: str = '0.0.0.0', port: int = PORT):
 
 
 def checkArgs() -> bool:
-    '''
-    check if the server is meant to start the ui or not
-    '''
+    ''' check if the server is meant to start the ui or not '''
     return len(sys.argv) > 1 and (sys.argv[1] == "-p" or sys.argv[1] == "--production")
 
 
