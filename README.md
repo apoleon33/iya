@@ -26,7 +26,6 @@ Im not going to lie the algorithms are pretty lame (as well as the frontend and 
 - website online
 - way better algorithm
 - indication on where the character is coming from
-- nsfw toggle button
 - etc...
 
 # Installation
