@@ -44,6 +44,12 @@ Then whenever you feel launching the server:
 make
 ```
 
+### Make a production-ready build
+
+```sh
+make production
+```
+
 ## Without make
 
 ```sh
@@ -56,4 +62,12 @@ Then whenever you feel launching the server:
 
 ```sh
 python3 server.py
+```
+
+### Make a production-ready build
+
+```sh
+cd frontend && npm run build
+cp -r frontend/build/ backend/
+python3 backend/server.py -p
 ```
