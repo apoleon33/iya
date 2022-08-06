@@ -14,7 +14,7 @@ A Smash-Or-Pass website to recommend you waifus
   - [With make](#with-make)
   - [Whitout make](#whitout-make)
 
-# Warning: WIP
+> **Warning**
 
 Im not going to lie the algorithms are pretty lame (as well as the frontend and a bunch of other stuffs) at the moment so there is a big margin with what can be done and where we are at the moment
 
