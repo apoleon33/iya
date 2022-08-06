@@ -8,11 +8,12 @@ A Smash-Or-Pass website to recommend you waifus
 
 - [iya](#iya)
 - [Summary](#summary)
-- [Warning: WIP](#warning-wip)
 - [TODO](#todo)
 - [Installation](#installation)
   - [With make](#with-make)
-  - [Whitout make](#whitout-make)
+    - [Make a production-ready build](#make-a-production-ready-build)
+  - [Without make](#without-make)
+    - [Make a production-ready build](#make-a-production-ready-build-1)
 
 > **Warning**
 
