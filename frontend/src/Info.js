@@ -39,7 +39,7 @@ class Info extends React.Component {
 
   render() {
     return (
-      <div id="info">
+      <div id="info" className="Info">
         <h1 id="compt">Iteration count: {this.state.iteration}</h1>
         <h1> nsfw allowed:</h1>
         <Toggle

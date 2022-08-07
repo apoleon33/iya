@@ -85,40 +85,36 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="mainAndInfoWrapper">
+      <div id="mainAndInfoWrapper" className="App">
         <main>
-          <button onClick={this.pass}>pass</button>
-          <p></p>
-          <div id="listCards">
-            <TinderCard
-              onSwipe={this.onSwipe}
-              onCardLeftScreen={() => onCardLeftScreen("fooBar")}
-              preventSwipe={["right", "left"]}
-              flickOnSwipe={true}
-            >
-              <div id="iconWrapper">
-                <img
-                  id="icon"
-                  src={this.state.url}
-                  alt={`Failed to render url ${this.state.url} :(`}
-                />
-                <div id="blurEffect">
-                  <h3 id="name">{this.state.name}</h3>
-                </div>
+          <TinderCard
+            onSwipe={this.onSwipe}
+            onCardLeftScreen={() => onCardLeftScreen("fooBar")}
+            preventSwipe={["right", "left"]}
+            flickOnSwipe={true}
+          >
+            <div id="iconWrapper">
+              <img
+                id="icon"
+                src={this.state.url}
+                alt={`Failed to render url ${this.state.url} :(`}
+              />
+              <div id="blurEffect">
+                <h3 id="name">{this.state.name}</h3>
               </div>
-            </TinderCard>
-          </div>
-
-          <p></p>
-          <button onClick={this.smash}>smash</button>
+            </div>
+          </TinderCard>
         </main>
-        <Info name={this.state.name} />
+        <div id="buttonWrapper">
+          <button onClick={this.pass}>pass</button>
+          <button onClick={this.smash}>smash</button>
+        </div>
       </div>
     );
   }
 }
 
-/*
+/* <Info name={this.state.name} />
 function Statistic() {
   return (
     <div id="stats">
