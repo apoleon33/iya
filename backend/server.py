@@ -11,7 +11,7 @@ import sys
 
 PORT = 3033  # port where flask is launched
 # how many time the user will have to smash/pass random character before the agorithm
-NUMBER_ITERATION_BEFORE_ALGORITHM = 50
+NUMBER_ITERATION_BEFORE_ALGORITHM = 25
 database = Database("mysqlite3.db", "characters")
 
 listCharacterObject = []
