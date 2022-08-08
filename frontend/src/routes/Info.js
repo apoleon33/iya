@@ -1,6 +1,8 @@
 import React from "react";
 import Toggle from "react-toggle";
 
+import Menu from "./Menu";
+
 class Info extends React.Component {
   constructor(props) {
     super(props);
@@ -39,13 +41,16 @@ class Info extends React.Component {
 
   render() {
     return (
-      <div id="info" className="Info">
-        <h1 id="compt">Iteration count: {this.state.iteration}</h1>
-        <h1> nsfw allowed:</h1>
-        <Toggle
-          defaultChecked={this.state.nsfwStatus}
-          onChange={this.nsfwToggle}
-        />
+      <div>
+        <Menu />
+        <div id="info" className="Info">
+          <h1 id="compt">Iteration count: {this.state.iteration}</h1>
+          <h1> nsfw allowed:</h1>
+          <Toggle
+            defaultChecked={this.state.nsfwStatus}
+            onChange={this.nsfwToggle}
+          />
+        </div>
       </div>
     );
   }

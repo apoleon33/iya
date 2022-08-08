@@ -4,6 +4,7 @@ $thirdColor: #fd7014;
 
 $font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;
 $text: #eeeeee;
+$hoverText: #eeeeeebb;
 
 body{
     font-family: $font;
@@ -16,13 +17,33 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
+    
 }
 
 .Menu{
     border-bottom: solid $secondaryColor;
     text-align: center;
-    //width: 25rem;
+    
+    display: flex;
+    justify-content: space-evenly;
+    width: 30vw;
+
+    a{
+        &:link{
+            text-decoration: none;
+            color: $text;
+        }
+
+        &:visited{
+            color: $text;
+            text-decoration: none;
+        }
+
+        &:hover{
+            color: $hoverText;
+            transition: 600ms;
+        }
+    }
 }
 
 .App{
@@ -31,18 +52,22 @@ body{
         align-items: center;
         justify-content: space-between;
         padding: 1em;
-    
+
+
+
         #iconWrapper{
             height: 30vw;
             width: 30vw;
             position: relative;
-            text-align: center;
+            text-align: center;          
     
             #icon{
                 width: 100%;
                 height: 100%;
                 border-radius: 10px;
                 transition: 600ms;
+                object-fit: cover;
+                object-position: 20% 10%;
             }
     
             #blurEffect{
@@ -105,3 +130,4 @@ body{
 }
 
 @media screen and (min-width: 815px) { #statWrapper{flex-direction: row;}}
+

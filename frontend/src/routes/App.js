@@ -1,6 +1,7 @@
 import React from "react";
-import Info from "./Info";
 import TinderCard from "react-tinder-card";
+
+import Menu from "./Menu";
 
 let [numberOfSmash, numberOfPass] = [[0], [0]];
 
@@ -85,29 +86,32 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="mainAndInfoWrapper" className="App">
-        <main>
-          <TinderCard
-            onSwipe={this.onSwipe}
-            onCardLeftScreen={() => onCardLeftScreen("fooBar")}
-            preventSwipe={["right", "left"]}
-            flickOnSwipe={true}
-          >
-            <div id="iconWrapper">
-              <img
-                id="icon"
-                src={this.state.url}
-                alt={`Failed to render url ${this.state.url} :(`}
-              />
-              <div id="blurEffect">
-                <h3 id="name">{this.state.name}</h3>
+      <div>
+        <Menu />
+        <div id="mainAndInfoWrapper" className="App">
+          <main>
+            <TinderCard
+              onSwipe={this.onSwipe}
+              onCardLeftScreen={() => onCardLeftScreen("fooBar")}
+              preventSwipe={["right", "left"]}
+              flickOnSwipe={true}
+            >
+              <div id="iconWrapper">
+                <img
+                  id="icon"
+                  src={this.state.url}
+                  alt={`Failed to render url ${this.state.url} :(`}
+                />
+                <div id="blurEffect">
+                  <h3 id="name">{this.state.name}</h3>
+                </div>
               </div>
-            </div>
-          </TinderCard>
-        </main>
-        <div id="buttonWrapper">
-          <button onClick={this.pass}>pass</button>
-          <button onClick={this.smash}>smash</button>
+            </TinderCard>
+          </main>
+          <div id="buttonWrapper">
+            <button onClick={this.pass}>pass</button>
+            <button onClick={this.smash}>smash</button>
+          </div>
         </div>
       </div>
     );
@@ -134,3 +138,23 @@ function Statistic() {
 }*/
 
 export default App;
+
+/*
+
+export default function App() {
+  return (
+    <div>
+      <h1>Bookkeeper</h1>
+      <nav
+        style={{
+          borderBottom: "solid 1px",
+          paddingBottom: "1rem",
+        }}
+      >
+        <Link to="/invoices">Invoices</Link> |{" "}
+        <Link to="/expenses">Expenses</Link>
+      </nav>
+    </div>
+  );
+}
+*/
