@@ -118,43 +118,4 @@ class App extends React.Component {
   }
 }
 
-/* <Info name={this.state.name} />
-function Statistic() {
-  return (
-    <div id="stats">
-      <h1>Statistics:</h1>
-      <div id="statWrapper">
-        <div id="chartWrapper">
-          <canvas id="myChart"></canvas>
-        </div>
-        <div id="textStatistic">
-          <h2 id="averageAge">statistics are not available under 50 choice</h2>
-          <h2 id="averageSex"> </h2>
-          <h2 id="preferedCloth"> </h2>
-        </div>
-      </div>
-    </div>
-  );
-}*/
-
 export default App;
-
-/*
-
-export default function App() {
-  return (
-    <div>
-      <h1>Bookkeeper</h1>
-      <nav
-        style={{
-          borderBottom: "solid 1px",
-          paddingBottom: "1rem",
-        }}
-      >
-        <Link to="/invoices">Invoices</Link> |{" "}
-        <Link to="/expenses">Expenses</Link>
-      </nav>
-    </div>
-  );
-}
-*/
