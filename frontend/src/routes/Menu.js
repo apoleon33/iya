@@ -16,6 +16,10 @@ class Menu extends React.Component {
         <Link to="/options">
           <h2>Options</h2>
         </Link>
+
+        <h2>
+          <a href="https://github.com/apoleon33/iya"> Github</a>
+        </h2>
       </header>
     );
   }
