@@ -29,7 +29,11 @@ class ThunderBolt extends React.Component {
       <div id="Thunderbol">
         <h2>Perhaps {this.state.name} is the perfect choice?</h2>
         <div id="imgWrapper" className="imageWrapper">
-          <img src={this.state.url} className="image"></img>
+          <img
+            src={this.state.url}
+            className="image"
+            alt="failed to render :("
+          ></img>
         </div>
       </div>
     );
