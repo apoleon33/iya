@@ -117,16 +117,12 @@ body{
             }
         }
     }
+}
 
-
-
-    .Info{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        color: $text;
-    }
+.Statistics{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 @media screen and (min-width: 815px) { #statWrapper{flex-direction: row;}}

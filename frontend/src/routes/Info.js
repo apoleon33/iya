@@ -44,7 +44,6 @@ class Info extends React.Component {
       <div>
         <Menu />
         <div id="info" className="Info">
-          <h1 id="compt">Iteration count: {this.state.iteration}</h1>
           <h1> nsfw allowed:</h1>
           <Toggle
             defaultChecked={this.state.nsfwStatus}

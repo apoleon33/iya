@@ -10,7 +10,7 @@ class Menu extends React.Component {
         </Link>
 
         <Link to="/statistics">
-          <h2>statistics</h2>
+          <h2>Statistics</h2>
         </Link>
 
         <Link to="/options">

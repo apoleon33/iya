@@ -113,6 +113,7 @@ class Statistic():
         # from: https://bit.ly/3A6uvwM
         # in the form: {number in the db: ["equivalent", number of occurence]}
         self.age = {
+            0: ["Not known", 0],
             1: ["Child", 0],
             3: ["Teen", 0],
             4: ["Adult", 0],
@@ -121,6 +122,7 @@ class Statistic():
         }
 
         self.sex = {
+            0: ["Not known", 0],
             1: ["Male", 0],
             2: ["Female", 0],
             3: ["unknown/ambiguous", 0],

@@ -5,9 +5,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./routes/App";
 import Info from "./routes/Info";
 import Menu from "./routes/Menu";
+import Statistics from "./routes/Statistic";
 
-import "./style.scss";
-import "./react-toggle.css";
+import "./style/style.scss";
+import "./style/react-toggle.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -16,6 +17,7 @@ root.render(
     <Routes>
       <Route path="/" element={<App />} />
       <Route path="options" element={<Info />} />
+      <Route path="statistics" element={<Statistics />} />
       <Route
         path="*"
         element={

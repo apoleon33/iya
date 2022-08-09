@@ -147,7 +147,8 @@ def newStat():
     message = {
         'averageAge': statsToSend[0],
         'averageSex': statsToSend[1],
-        'preferedCloth': statsToSend[2]
+        'preferedCloth': statsToSend[2],
+        'iterationCount': anime.iterationCount
     }
     return jsonify(message)
 
