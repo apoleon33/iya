@@ -159,6 +159,13 @@ def changeNsfw():
     return jsonify({"status": "ok"})
 
 
+@app.route('/api/nsfwStatus', methods=['GET'])
+def nsfwStatus():
+    return jsonify({
+        "nsfwStatus": anime.nsfw
+    })
+
+
 if __name__ == "__main__":
     frontend = Process(target=launchFrontend)
     backend = Process(target=launchBackend, args=(False, '0.0.0.0', PORT))

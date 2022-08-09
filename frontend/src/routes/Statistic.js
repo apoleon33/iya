@@ -29,7 +29,6 @@ export default class Statistics extends React.Component {
   }
 
   render() {
-    this.getData();
     return (
       <div>
         <Menu />

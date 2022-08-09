@@ -125,5 +125,11 @@ body{
     align-items: center;
 }
 
+.Options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 @media screen and (min-width: 815px) { #statWrapper{flex-direction: row;}}
 
