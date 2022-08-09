@@ -171,10 +171,31 @@ class Statistic():
             23: ["Other", 0]
         }
 
-    def updateStats(self, age: int, sex: int, clothing: int):
+        self.hairColor = {
+            0: ["Not known", 0],
+            1: ["black", 0],
+            2: ["Blonde/Yellow", 0],
+            3: ["Blue", 0],
+            4: ["Brown", 0],
+            5: ["Green", 0],
+            6: ["Gray", 0],
+            7:  ["Orange", 0],
+            8:  ["Purple", 0],
+            9:  ["Red", 0],
+            10: ["White", 0],
+            11: ["Yellow", 0],
+            12: ["Pink", 0],
+            13: ["Maroon", 0],
+            14: ["Blue-Green", 0],
+            20: ["Not Visible", 0]
+
+        }
+
+    def updateStats(self, age: int, sex: int, clothing: int, hairColor: int):
         self.age[age][1] += 1
         self.sex[sex][1] += 1
         self.clothing[clothing][1] += 1
+        self.hairColor[hairColor][1] += 1
 
     def convertNumberToValue(self, criteria: dict, value: int) -> str:
         '''
@@ -215,4 +236,22 @@ class Statistic():
                 highest = i
         pref.append(self.clothing[highest][0])
 
+        highest = 1
+        for i in self.hairColor.keys():
+            if self.hairColor[highest][1] < self.hairColor[i][1]:
+                highest = i
+        pref.append(self.hairColor[highest][0])
+
         return pref
+
+    def perfectCharacter(self, character: Character) -> bool:
+        '''
+        return whether a character is the perfect definition of the stats or not
+        '''
+        stats = self.preferred()
+        return(
+            (self.age[character.age][0] == stats[0]) and
+            (self.sex[character.sex][0] == stats[1]) and
+            (self.clothing[character.clothing][0] == stats[2]) and
+            (self.hairColor[character.hair_color][0] == stats[3])
+        )

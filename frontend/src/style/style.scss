@@ -26,7 +26,7 @@ body{
     
     display: flex;
     justify-content: space-evenly;
-    width: 30vw;
+    width: 40vw;
 
     a{
         &:link{
@@ -56,19 +56,8 @@ body{
 
 
         #iconWrapper{
-            height: 30vw;
-            width: 30vw;
             position: relative;
             text-align: center;          
-    
-            #icon{
-                width: 100%;
-                height: 100%;
-                border-radius: 10px;
-                transition: 600ms;
-                object-fit: cover;
-                object-position: 20% 10%;
-            }
     
             #blurEffect{
                 position: absolute;
@@ -123,6 +112,16 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    #textPreferredCharacter{
+        width: 40vw;
+    }
+
+
+}
+
+#ThunderBol{
+    width: 40vw;
+    color: black;
 }
 
 .Options{
@@ -133,3 +132,16 @@ body{
 }
 @media screen and (min-width: 815px) { #statWrapper{flex-direction: row;}}
 
+.imageWrapper{
+    height: 40vw;
+    width: 40vw;
+}
+
+.image{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    transition: 600ms;
+    object-fit: cover;
+    object-position: 20% 10%;
+}

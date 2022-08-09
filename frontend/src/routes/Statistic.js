@@ -1,6 +1,41 @@
 import React from "react";
 import Menu from "./Menu";
 
+class ThunderBolt extends React.Component {
+  constructor() {
+    super();
+    this.state = { name: "", url: "", iteration: 0 };
+    this.getBestCharacter = this.getBestCharacter.bind(this);
+  }
+
+  componentDidUpdate() {
+    if (this.state.iteration === 0) {
+      this.getBestCharacter();
+      this.setState({ iteration: 1 });
+    }
+  }
+
+  async getBestCharacter() {
+    let response = await fetch("/api/bestCharacter");
+    let data = await response.json();
+    this.setState({
+      name: data.name,
+      url: data.url,
+    });
+  }
+
+  render() {
+    return (
+      <div id="Thunderbol">
+        <h2>Perhaps {this.state.name} is the perfect choice?</h2>
+        <div id="imgWrapper" className="imageWrapper">
+          <img src={this.state.url} className="image"></img>
+        </div>
+      </div>
+    );
+  }
+}
+
 export default class Statistics extends React.Component {
   constructor() {
     super();
@@ -10,6 +45,7 @@ export default class Statistics extends React.Component {
       averageSex: "",
       preferedCloth: "",
       iterationCount: 0,
+      preferredHairColor: "",
     };
     this.getData = this.getData.bind(this);
   }
@@ -25,6 +61,8 @@ export default class Statistics extends React.Component {
       averageAge: this.data.averageAge,
       averageSex: this.data.averageSex,
       iterationCount: this.data.iterationCount,
+      preferedCloth: this.data.preferedCloth,
+      preferredHairColor: this.data.preferredHairColor,
     });
   }
 
@@ -33,9 +71,13 @@ export default class Statistics extends React.Component {
       <div>
         <Menu />
         <div className="Statistics">
-          <h3>You passed/smashed {this.state.iterationCount} character</h3>
-          <h3>most smashed age: {this.state.averageAge}</h3>
-          <h3>most smashed sex: {this.state.averageSex}</h3>
+          <h1 id="textPreferredCharacter">
+            Out of the {this.state.iterationCount} character you smashed or
+            passed, we can conclude you like {this.state.averageAge}{" "}
+            {this.state.averageSex} that wear {this.state.preferedCloth}, and
+            have {this.data.preferredHairColor} hairs.
+          </h1>
+          <ThunderBolt />
         </div>
       </div>
     );

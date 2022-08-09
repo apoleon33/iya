@@ -120,7 +120,9 @@ def testfn():
         if anime.actualObject.status:  # add to the tree database only if its good since it work on an average
             tree.addDataDoDataset(anime.actualObject.formating())
             stats.updateStats(anime.actualObject.age,
-                              anime.actualObject.sex, anime.actualObject.clothing)
+                              anime.actualObject.sex,
+                              anime.actualObject.clothing,
+                              anime.actualObject.hair_color)
         anime.newCharacter()
         return {"received": True}
 
@@ -148,8 +150,26 @@ def newStat():
         'averageAge': statsToSend[0],
         'averageSex': statsToSend[1],
         'preferedCloth': statsToSend[2],
-        'iterationCount': anime.iterationCount
+        'iterationCount': anime.iterationCount,
+        'preferredHairColor': statsToSend[3]
     }
+    return jsonify(message)
+
+
+@app.route('/api/bestCharacter', methods=['GET'])
+def bestCharacter():
+    message = {}
+    i = 0
+    while i < len(listCharacterObject):
+        character = randomCharacterInt()
+        if stats.perfectCharacter(character):
+            message = {
+                'url': character.image,
+                'name': character.name
+            }
+            break
+        i += 1
+
     return jsonify(message)
 
 

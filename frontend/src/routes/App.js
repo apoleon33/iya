@@ -96,9 +96,10 @@ class App extends React.Component {
               preventSwipe={["right", "left"]}
               flickOnSwipe={true}
             >
-              <div id="iconWrapper">
+              <div id="iconWrapper" className="imageWrapper">
                 <img
                   id="icon"
+                  className="image"
                   src={this.state.url}
                   alt={`Failed to render url ${this.state.url} :(`}
                 />
