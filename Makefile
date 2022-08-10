@@ -9,5 +9,8 @@ install:
 	pip install -r backend/requirements.txt
 	cd frontend && npm install
 
-production: build
+convert:
+	python3 backend/converter.py
+
+production: build convert
 	python3 backend/server.py -p

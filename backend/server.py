@@ -1,4 +1,5 @@
 from database import *
+from db import listCharacterObject
 from core.tree import Tree
 from core.knn import Knn
 
@@ -13,13 +14,13 @@ PORT = 3033  # port where flask is launched
 # how many time the user will have to smash/pass random character before the agorithm
 NUMBER_ITERATION_BEFORE_ALGORITHM = 25
 database = Database("mysqlite3.db", "characters")
-
+"""
 listCharacterObject = []
 last = 101759
 # get all the characters and store them in a list
 for i in track(range(1, last), description="Adding characters to list..."):
     actualObject = database.returnCharacterById(i)
-    listCharacterObject.append(actualObject)
+    listCharacterObject.append(actualObject)"""
 
 # process functions
 
