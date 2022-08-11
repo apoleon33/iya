@@ -1,5 +1,5 @@
 run:
-	python3 backend/server.py
+	python3 backend/server.py -l
 
 build:
 	cd frontend && npm run build
@@ -13,4 +13,4 @@ convert:
 	python3 backend/converter.py
 
 production: build convert
-	python3 backend/server.py -p
+	python3 backend/server.py

@@ -35,7 +35,7 @@ def launchBackend(debug: bool, host: str = '0.0.0.0', port: int = PORT):
 
 def checkArgs() -> bool:
     ''' check if the server is meant to start the ui or not '''
-    return len(sys.argv) > 1 and (sys.argv[1] == "-p" or sys.argv[1] == "--production")
+    return len(sys.argv) > 1 and (sys.argv[1] == "-" or sys.argv[1] == "--live")
 
 
 def initVariables():
@@ -104,10 +104,12 @@ app = Flask(__name__, template_folder="build", static_folder="build/static/")
 
 @app.route("/")
 def response():
+
     if checkArgs():
-        return render_template('index.html')
-    else:
         return {"received": True}
+    else:
+
+        return render_template('index.html')
 
 
 # retrieve if the user has smashed/passed the last character sent
@@ -130,10 +132,14 @@ def testfn():
 
 @app.route('/api/image', methods=['GET'])
 def newImage():
+    global anime, algo, tree, stats
     try:  # if its the first time launching the server it would throw an error
         message = sendMessage()
     except NameError:
-        initVariables()
+        anime = CharacterList()
+        algo = Knn(8)
+        tree = Tree()
+        stats = Statistic()
         message = sendMessage()
     return jsonify(message)
 
@@ -193,5 +199,5 @@ if __name__ == "__main__":
 
     backend.start()
 
-    if not checkArgs():
+    if checkArgs():
         frontend.start()
