@@ -21,9 +21,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("/").then((res) => {
-      console.log(res.ok);
-    });
     this.getCharacterImg();
   }
 

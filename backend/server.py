@@ -3,9 +3,8 @@ from db import listCharacterObject
 from core.tree import Tree
 from core.knn import Knn
 
-from flask import Flask, jsonify, request, render_template
-from rich.progress import track
-from random import choice
+from flask import Flask, jsonify, request, render_template, make_response
+from random import choice, randint
 from multiprocessing import Process
 from os import system
 import sys
@@ -13,14 +12,6 @@ import sys
 PORT = 3033  # port where flask is launched
 # how many time the user will have to smash/pass random character before the agorithm
 NUMBER_ITERATION_BEFORE_ALGORITHM = 25
-database = Database("mysqlite3.db", "characters")
-"""
-listCharacterObject = []
-last = 101759
-# get all the characters and store them in a list
-for i in track(range(1, last), description="Adding characters to list..."):
-    actualObject = database.returnCharacterById(i)
-    listCharacterObject.append(actualObject)"""
 
 # process functions
 
@@ -35,24 +26,7 @@ def launchBackend(debug: bool, host: str = '0.0.0.0', port: int = PORT):
 
 def checkArgs() -> bool:
     ''' check if the server is meant to start the ui or not '''
-    return len(sys.argv) > 1 and (sys.argv[1] == "-" or sys.argv[1] == "--live")
-
-
-def initVariables():
-    ''' Initialise all the variables when its the first time the user is visiting the website '''
-    global anime, algo, tree, stats
-    anime = CharacterList()
-    algo = Knn(8)
-    tree = Tree()
-    stats = Statistic()
-
-
-def sendMessage() -> dict:
-    ''' Return the right dictionnary that will be sent to frontend by /api/image '''
-    return {
-        'url': anime.actualObject.image,
-        'name': anime.actualObject.name
-    }
+    return len(sys.argv) > 1 and (sys.argv[1] == "-l" or sys.argv[1] == "--live")
 
 
 def randomCharacterInt() -> object:
@@ -69,21 +43,21 @@ class CharacterList():
         self.iterationCount = 0
         self.nsfw = False
 
-    def newCharacter(self):
+    def newCharacter(self, id):
         self.historic.append(self.actualObject)
-        self.evaluate()
+        self.evaluate(id)
 
-    def evaluate(self):
+    def evaluate(self, id):
         # the algorithm starts after a certain number of iterations
         if self.iterationCount < NUMBER_ITERATION_BEFORE_ALGORITHM:
             self.actualObject = randomCharacterInt()
         else:
             for _ in listCharacterObject:
                 self.actualObject = choice(listCharacterObject)
-                algo.setNewEvaluation(self.actualObject.formating())
-                tree.setNewEvaluation(self.actualObject.formating())
-                choix = algo.determine()
-                choixTree = tree.determine()
+                listUser[id][1].setNewEvaluation(self.actualObject.formating())
+                listUser[id][2].setNewEvaluation(self.actualObject.formating())
+                choix = listUser[id][1].determine()
+                choixTree = listUser[id][2].determine()
                 # both algoritm working and being sfw if nsfw isn't enabled
                 if (choix or choixTree) and (self.nsfw == self.actualObject.getNsfwRating()):
                     break
@@ -91,25 +65,31 @@ class CharacterList():
             listCharacterObject.remove(self.actualObject)
         self.iterationCount += 1
 
-    def makeFivePrediction(self) -> list:
-        self.predictionList = []
-        for predi in range(5):
-            self.newCharacter()
-            self.predictionList.append(self.actualObject)
-        return self.predictionList
-
 
 app = Flask(__name__, template_folder="build", static_folder="build/static/")
+listUser = {}
 
 
 @app.route("/")
 def response():
-
+    global listUser
     if checkArgs():
         return {"received": True}
     else:
 
-        return render_template('index.html')
+        resp = make_response(render_template('index.html'))
+        print(f"oki {request.cookies.get('user')}")
+        if request.cookies.get('user') is None:
+            identification = str(randint(100000, 999999))
+            resp.set_cookie('user', identification)
+            listUser[identification] = [
+                CharacterList(),
+                Knn(8),
+                Tree(),
+                Statistic()
+            ]
+            print(identification)
+        return resp
 
 
 # retrieve if the user has smashed/passed the last character sent
@@ -118,46 +98,67 @@ def testfn():
     if request.method == 'POST':
         choice = request.get_json()
 
-        anime.actualObject.addStatus(choice['status'])
-        algo.addDataDoDataset(anime.actualObject.formating())
-        if anime.actualObject.status:  # add to the tree database only if its good since it work on an average
-            tree.addDataDoDataset(anime.actualObject.formating())
-            stats.updateStats(anime.actualObject.age,
-                              anime.actualObject.sex,
-                              anime.actualObject.clothing,
-                              anime.actualObject.hair_color)
-        anime.newCharacter()
-        return {"received": True}
+        user = request.cookies.get('user')
+        user = listUser[user]
+
+        user[0].actualObject.addStatus(choice['status'])
+        user[1].addDataDoDataset(user[0].actualObject.formating())
+        # add to the tree database only if its good since it work on an average
+        if user[0].actualObject.status:
+            user[2].addDataDoDataset(user[0].actualObject.formating())
+            user[3].updateStats(user[0].actualObject.age,
+                                user[0].actualObject.sex,
+                                user[0].actualObject.clothing,
+                                user[0].actualObject.hair_color)
+        user[0].newCharacter(request.cookies.get('user'))
+        return {"received": True}, 200
 
 
 @app.route('/api/image', methods=['GET'])
 def newImage():
-    global anime, algo, tree, stats
-    try:  # if its the first time launching the server it would throw an error
-        message = sendMessage()
-    except NameError:
-        anime = CharacterList()
-        algo = Knn(8)
-        tree = Tree()
-        stats = Statistic()
-        message = sendMessage()
-    return jsonify(message)
+    if request.cookies.get('user') is None:
+        identification = str(randint(100000, 999999))
+
+        listUser[identification] = [
+            CharacterList(),
+            Knn(8),
+            Tree(),
+            Statistic()
+        ]
+        user = listUser[identification]
+    else:
+        user = request.cookies.get('user')
+        user = listUser[user]
+
+    message = {
+        'url': user[0].actualObject.image,
+        'name': user[0].actualObject.name
+    }
+    resp = make_response(jsonify(message))
+
+    if request.cookies.get('user') is None:
+        resp.set_cookie('user', identification)
+    return resp
 
 
 @app.route('/api/stats', methods=['GET'])
 def newStat():
+
+    user = request.cookies.get('user')
+    user = listUser[user]
+
     try:
-        tree.makeAverage()
+        user[2].makeAverage()
     except ZeroDivisionError:
         pass
 
-    statsToSend = stats.preferred()
+    statsToSend = user[3].preferred()
 
     message = {
         'averageAge': statsToSend[0],
         'averageSex': statsToSend[1],
         'preferedCloth': statsToSend[2],
-        'iterationCount': anime.iterationCount,
+        'iterationCount': user[0].iterationCount,
         'preferredHairColor': statsToSend[3]
     }
     return jsonify(message)
@@ -166,10 +167,12 @@ def newStat():
 @app.route('/api/bestCharacter', methods=['GET'])
 def bestCharacter():
     message = {}
+    user = request.cookies.get('user')
+    user = listUser[user]
     i = 0
     while i < len(listCharacterObject):
         character = randomCharacterInt()
-        if stats.perfectCharacter(character):
+        if user[3].perfectCharacter(character):
             message = {
                 'url': character.image,
                 'name': character.name
@@ -182,14 +185,20 @@ def bestCharacter():
 
 @app.route('/api/nsfw', methods=['GET'])
 def changeNsfw():
-    anime.nsfw = not anime.nsfw
+    user = request.cookies.get('user')
+    user = listUser[user]
+
+    user[0].nsfw = not user[0].nsfw
     return jsonify({"status": "ok"})
 
 
 @app.route('/api/nsfwStatus', methods=['GET'])
 def nsfwStatus():
+    user = request.cookies.get('user')
+    user = listUser[user]
+
     return jsonify({
-        "nsfwStatus": anime.nsfw
+        "nsfwStatus": user[0].nsfw
     })
 
 
