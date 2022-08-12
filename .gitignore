@@ -164,3 +164,4 @@ static/style.css
 *.css.map
 
 .vscode/
+backend/db.py
