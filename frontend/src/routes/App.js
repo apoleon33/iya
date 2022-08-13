@@ -83,7 +83,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="wrap">
         <Menu />
         <div id="mainAndInfoWrapper" className="App">
           <main>

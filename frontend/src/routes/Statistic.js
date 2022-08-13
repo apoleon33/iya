@@ -26,7 +26,7 @@ class ThunderBolt extends React.Component {
 
   render() {
     return (
-      <div id="Thunderbol">
+      <div className="Thunderbolt">
         <h2>Perhaps {this.state.name} is the perfect choice?</h2>
         <div id="imgWrapper" className="imageWrapper">
           <img

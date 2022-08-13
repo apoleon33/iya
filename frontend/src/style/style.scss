@@ -12,22 +12,16 @@ body{
     margin: 0;
     overflow-x: hidden;
     color: $text;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    
     
 }
 
 .Menu{
-    border-bottom: solid $secondaryColor;
     text-align: center;
-    
+    border-bottom: solid $secondaryColor;
     display: flex;
     justify-content: space-evenly;
-    width: 40vw;
-
+    
     a{
         &:link{
             text-decoration: none;
@@ -89,10 +83,8 @@ body{
         
         button{
             background-color:  $thirdColor;
-            color: $text; // $thirdColor
+            color: $text;
             border-radius: 10px;
-            width: 10vmin;
-            height: 5vmin;
             font-size: large;
             border: none;
         
@@ -112,25 +104,107 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    #textPreferredCharacter{
+}
+
+.Options{
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (min-width: 815px) {
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+    }
+
+    .Menu{
         width: 40vw;
+    }
+
+    .imageWrapper{
+        height: 40vw;
+        width: 40vw;
+    }
+    button{
+        width: 10vmin;
+        height: 5vmin;
+    }
+
+    .Options{
+        flex-direction: row;
+    }
+
+    .Statistics{
+        #textPreferredCharacter{
+            width: 40vw;
+        }
     }
 
 
 }
 
-.Options{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-@media screen and (min-width: 815px) { #statWrapper{flex-direction: row;}}
+@media screen and (max-width: 815px){
 
-.imageWrapper{
-    height: 40vw;
-    width: 40vw;
+    .Menu{
+        width: 100vw;
+        position: absolute;
+        top: 0vh;
+        align-items: center;
+        svg{
+            font-size: 1.5em;
+        }
+    }
+
+    #mainAndInfoWrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100vh;
+    }
+
+    .imageWrapper{
+        height: 100vw;
+        width: 90vw;
+    }
+
+    button{
+        width: 25vw;
+        height: 10vw;
+    }
+
+    .Options{
+        position: absolute;
+        top: 10vh;
+        text-align: center;
+        flex-direction: column;
+        width: 100vw;
+    }
+
+    .Statistics{
+        position: absolute;
+        top: 10vh;
+
+        #textPreferredCharacter{
+            width: 95vw;
+        }
+
+        .Thunderbolt{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+
+    }
 }
+
+
 
 .image{
     width: 100%;
