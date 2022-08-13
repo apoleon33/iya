@@ -1,6 +1,6 @@
 # iya
 
-<img src="https://img.shields.io/badge/status-under%20developement-9cf"> <img src="https://badgen.net/github/license/apoleon33/iya"> [![Node.js CI](https://github.com/apoleon33/iya/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/apoleon33/iya/actions/workflows/node.js.yml) [![Docker Image CI](https://github.com/apoleon33/iya/actions/workflows/docker-image.yml/badge.svg)](https://github.com/apoleon33/iya/actions/workflows/docker-image.yml) <img src="https://badgen.net/github/dependabot/apoleon33/iya">  <img src="https://pyheroku-badge.herokuapp.com/?app=iyap"> 
+<img src="https://badgen.net/github/license/apoleon33/iya"> [![Node.js CI](https://github.com/apoleon33/iya/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/apoleon33/iya/actions/workflows/node.js.yml) [![Docker Image CI](https://github.com/apoleon33/iya/actions/workflows/docker-image.yml/badge.svg)](https://github.com/apoleon33/iya/actions/workflows/docker-image.yml) <img src="https://badgen.net/github/dependabot/apoleon33/iya">  <img src="https://pyheroku-badge.herokuapp.com/?app=iyap"> 
 
 A Smash-Or-Pass website to recommend you waifus
 
@@ -21,10 +21,6 @@ Im not going to lie the algorithms are pretty lame (as well as the frontend and 
 
 # TODO
 
-- better-looking website
-  - image not changing width/height
-  - better responsive design
-- website online
 - way better algorithm
 - indication on where the character is coming from
 - etc...
