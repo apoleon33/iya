@@ -58,7 +58,7 @@ npm install
 Then whenever you feel launching the server:
 
 ```sh
-python3 server.py
+python3 server.py -l
 ```
 
 ### Make a production-ready build
@@ -66,5 +66,5 @@ python3 server.py
 ```sh
 cd frontend && npm run build
 cp -r frontend/build/ backend/
-python3 backend/server.py -p
+cd backend && gunicorn --bind 0.0.0.0:3033 main:app --timeout 600
 ```
