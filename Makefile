@@ -19,5 +19,6 @@ docker:
 	sudo docker build -t iya .
 
 heroku:
+	sudo systemctl start docker
 	sudo heroku container:push web --app iyap
 	heroku container:release -a iyap web
