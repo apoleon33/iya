@@ -76,9 +76,7 @@ def response():
     if checkArgs():
         return {"received": True}
     else:
-
         resp = make_response(render_template('index.html'))
-        print(f"oki {request.cookies.get('user')}")
         if request.cookies.get('user') is None:
             identification = str(randint(100000, 999999))
             resp.set_cookie('user', identification)
@@ -88,7 +86,6 @@ def response():
                 Tree(),
                 Statistic()
             ]
-            print(identification)
         return resp
 
 
@@ -99,7 +96,16 @@ def testfn():
         choice = request.get_json()
 
         user = request.cookies.get('user')
-        user = listUser[user]
+        try:
+            user = listUser[user]
+        except KeyError:
+            listUser[user] = [
+                CharacterList(),
+                Knn(8),
+                Tree(),
+                Statistic()
+            ]
+            user = listUser[user]
 
         user[0].actualObject.addStatus(choice['status'])
         user[1].addDataDoDataset(user[0].actualObject.formating())
@@ -128,8 +134,16 @@ def newImage():
         user = listUser[identification]
     else:
         user = request.cookies.get('user')
-        user = listUser[user]
-
+        try:
+            user = listUser[user]
+        except KeyError:
+            listUser[user] = [
+                CharacterList(),
+                Knn(8),
+                Tree(),
+                Statistic()
+            ]
+            user = listUser[user]
     message = {
         'url': user[0].actualObject.image,
         'name': user[0].actualObject.name
