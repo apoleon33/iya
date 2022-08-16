@@ -201,6 +201,22 @@ def nsfwStatus():
         "nsfwStatus": user[0].nsfw
     })
 
+# endpoint used by react but not by flask
+
+
+def returnToHome():
+    return """<meta http-equiv="Refresh" content="0; url='/'" />"""
+
+
+@app.route('/options')
+def options():
+    return returnToHome()
+
+
+@app.route('/statistics')
+def statistics():
+    return returnToHome()
+
 
 if __name__ == "__main__":
     frontend = Process(target=launchFrontend)
