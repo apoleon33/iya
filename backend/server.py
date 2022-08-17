@@ -2,6 +2,7 @@ from database import *
 from db import listCharacterObject
 from core.tree import Tree
 from core.knn import Knn
+from api import WaifuImApi
 
 from flask import Flask, jsonify, request, render_template, make_response
 from random import choice, randint
@@ -12,10 +13,10 @@ import sys
 PORT = 3033  # port where flask is launched
 # how many time the user will have to smash/pass random character before the agorithm
 NUMBER_ITERATION_BEFORE_ALGORITHM = 25
+api = WaifuImApi()
+
 
 # process functions
-
-
 def launchFrontend():
     system("cd frontend && npm start")
 
@@ -34,11 +35,16 @@ def randomCharacterInt() -> object:
 
 
 class CharacterList():
-    def __init__(self) -> None:
+    def __init__(self, databaseInUSe: bool = True) -> None:
         '''
         simple class to coordinate the database, the server, and the algorithms
         '''
-        self.actualObject = randomCharacterInt()
+        self.databaseInUse = databaseInUSe  # if true: the first database, if false: the waifu.im api
+        if self.databaseInUse:
+            self.actualObject = randomCharacterInt()
+        else:
+            self.actualObject = api.returnCharacter()
+
         self.historic = []
         self.iterationCount = 0
         self.nsfw = False
@@ -48,27 +54,46 @@ class CharacterList():
         self.evaluate(id)
 
     def checkNsfw(self) -> bool:
-        if not self.nsfw and self.actualObject.getNsfwRating():
+        if self.nsfw and self.actualObject.getNsfwRating():
             return False
-        else:  # if the character is nsfw but nsfw is enabled or if the character is sfw
+        else:  # if the character is nsfw and nsfw is enabled or if the character is sfw
             return True
 
     def evaluate(self, id):
         # the algorithm starts after a certain number of iterations
         if self.iterationCount < NUMBER_ITERATION_BEFORE_ALGORITHM:
-            self.actualObject = randomCharacterInt()
+            if self.databaseInUse:
+                self.actualObject = randomCharacterInt()
+            else:
+                self.actualObject = api.returnCharacter()
         else:
-            for _ in listCharacterObject:
-                self.actualObject = choice(listCharacterObject)
-                listUser[id][1].setNewEvaluation(self.actualObject.formating())
-                listUser[id][2].setNewEvaluation(self.actualObject.formating())
-                choix = listUser[id][1].determine()
-                choixTree = listUser[id][2].determine()
-                # both algoritm working and being sfw if nsfw isn't enabled
-                if (choix or choixTree) and self.checkNsfw():
-                    break
+            if self.databaseInUse:
+                for _ in listCharacterObject:
+                    self.actualObject = choice(listCharacterObject)
 
-            listCharacterObject.remove(self.actualObject)
+                    listUser[id][1].setNewEvaluation(
+                        self.actualObject.formating())
+                    listUser[id][2].setNewEvaluation(
+                        self.actualObject.formating())
+
+                    choix = listUser[id][1].determine()
+                    choixTree = listUser[id][2].determine()
+
+                    # both algoritm working and being sfw if nsfw isn't enabled
+                    if (choix or choixTree) and self.checkNsfw():
+                        break
+
+                listCharacterObject.remove(self.actualObject)
+            else:
+                choix = False
+                while not choix:
+                    self.actualObject = api.returnCharacter()
+
+                    listUser[id][1].setNewEvaluation(
+                        self.actualObject.formating())
+
+                    choix = listUser[id][1].determine()
+
         self.iterationCount += 1
 
 
@@ -87,7 +112,7 @@ def response():
             identification = str(randint(100000, 999999))
             resp.set_cookie('user', identification)
             listUser[identification] = [
-                CharacterList(),
+                CharacterList(False),
                 Knn(8),
                 Tree(),
                 Statistic()
@@ -106,7 +131,7 @@ def testfn():
             user = listUser[user]
         except KeyError:
             listUser[user] = [
-                CharacterList(),
+                CharacterList(False),
                 Knn(8),
                 Tree(),
                 Statistic()
@@ -116,7 +141,7 @@ def testfn():
         user[0].actualObject.addStatus(choice['status'])
         user[1].addDataDoDataset(user[0].actualObject.formating())
         # add to the tree database only if its good since it work on an average
-        if user[0].actualObject.status:
+        if user[0].actualObject.status and user[0].databaseInUse:
             user[2].addDataDoDataset(user[0].actualObject.formating())
             user[3].updateStats(user[0].actualObject.age,
                                 user[0].actualObject.sex,
@@ -132,7 +157,7 @@ def newImage():
         identification = str(randint(100000, 999999))
 
         listUser[identification] = [
-            CharacterList(),
+            CharacterList(False),
             Knn(8),
             Tree(),
             Statistic()
@@ -144,7 +169,7 @@ def newImage():
             user = listUser[user]
         except KeyError:
             listUser[user] = [
-                CharacterList(),
+                CharacterList(False),
                 Knn(8),
                 Tree(),
                 Statistic()
