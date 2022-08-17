@@ -22,12 +22,12 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getCharacterImg();
-    document.addEventListener("keydown", this.keyboardEvents.bind(this));
+    document.addEventListener("keyup", this.keyboardEvents.bind(this));
   }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
-    document.removeEventListener("keydown", this.keyboardEvents.bind(this));
+    document.removeEventListener("keyup", this.keyboardEvents.bind(this));
   }
 
   onSwipe = (direction) => {
@@ -102,7 +102,7 @@ class App extends React.Component {
       <div id="wrap">
         <Menu />
         <div id="mainAndInfoWrapper" className="App">
-          <main onKeyDown={this.keyboardEvents}>
+          <main>
             <TinderCard
               onSwipe={this.onSwipe}
               onCardLeftScreen={() => onCardLeftScreen("fooBar")}
