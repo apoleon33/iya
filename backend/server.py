@@ -47,6 +47,12 @@ class CharacterList():
         self.historic.append(self.actualObject)
         self.evaluate(id)
 
+    def checkNsfw(self) -> bool:
+        if not self.nsfw and self.actualObject.getNsfwRating():
+            return False
+        else:  # if the character is nsfw but nsfw is enabled or if the character is sfw
+            return True
+
     def evaluate(self, id):
         # the algorithm starts after a certain number of iterations
         if self.iterationCount < NUMBER_ITERATION_BEFORE_ALGORITHM:
@@ -59,7 +65,7 @@ class CharacterList():
                 choix = listUser[id][1].determine()
                 choixTree = listUser[id][2].determine()
                 # both algoritm working and being sfw if nsfw isn't enabled
-                if (choix or choixTree) and (self.nsfw == self.actualObject.getNsfwRating()):
+                if (choix or choixTree) and self.checkNsfw():
                     break
 
             listCharacterObject.remove(self.actualObject)
@@ -215,9 +221,8 @@ def nsfwStatus():
         "nsfwStatus": user[0].nsfw
     })
 
+
 # endpoint used by react but not by flask
-
-
 def returnToHome():
     return """<meta http-equiv="Refresh" content="0; url='/'" />"""
 
