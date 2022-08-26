@@ -13,9 +13,10 @@ convert:
 	python3 backend/converter.py
 
 production: build convert
-	cd backend && gunicorn --bind 0.0.0.0:3033 main:app --timeout 600
+	cd backend && gunicorn --bind 0.0.0.0:3033 server:app
 
-docker: 
+docker:
+	sudo systemctl start docker
 	sudo docker build -t iya .
 
 heroku:

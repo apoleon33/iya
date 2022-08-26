@@ -12,4 +12,4 @@ RUN make convert
 
 EXPOSE 5000
 
-CMD cd backend && gunicorn --bind 0.0.0.0:3033 main:app --timeout 600
+CMD cd backend && gunicorn --bind 0.0.0.0:$PORT server:app

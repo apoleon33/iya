@@ -6,7 +6,7 @@ from core.knn import Knn
 from flask import Flask, jsonify, request, render_template, make_response
 from random import choice, randint
 from multiprocessing import Process
-from os import system
+from os import system, environ
 import sys
 
 PORT = 3033  # port where flask is launched
@@ -20,8 +20,9 @@ def launchFrontend():
     system("cd frontend && npm start")
 
 
-def launchBackend(debug: bool, host: str = '0.0.0.0', port: int = PORT):
-    app.run(debug=debug, host=host, port=port)
+def launchBackend():
+    port = int(environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
 
 
 def checkArgs() -> bool:
@@ -239,7 +240,7 @@ def statistics():
 
 if __name__ == "__main__":
     frontend = Process(target=launchFrontend)
-    backend = Process(target=launchBackend, args=(False, '0.0.0.0', PORT))
+    backend = Process(target=launchBackend)
 
     backend.start()
 
