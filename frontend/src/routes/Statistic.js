@@ -62,11 +62,11 @@ export default class Statistics extends React.Component {
     let response = await fetch("/api/stats");
     this.data = await response.json();
     this.setState({
-      averageAge: this.data.averageAge,
-      averageSex: this.data.averageSex,
+      averageAge: this.data.averageAge.toLowerCase(),
+      averageSex: this.data.averageSex.toLowerCase(),
       iterationCount: this.data.iterationCount,
-      preferedCloth: this.data.preferedCloth,
-      preferredHairColor: this.data.preferredHairColor,
+      preferedCloth: this.data.preferedCloth.toLowerCase(),
+      preferredHairColor: this.data.preferredHairColor.toLowerCase(),
     });
   }
 
@@ -78,8 +78,7 @@ export default class Statistics extends React.Component {
           <h1 id="textPreferredCharacter">
             Out of the {this.state.iterationCount} character you smashed or
             passed, we can conclude you like {this.state.averageAge}{" "}
-            {this.state.averageSex} that wear {this.state.preferedCloth}, and
-            have {this.data.preferredHairColor} hairs.
+            {this.state.averageSex} with {this.data.preferredHairColor} hairs.
           </h1>
           <ThunderBolt />
         </div>
