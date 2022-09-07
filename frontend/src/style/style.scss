@@ -113,6 +113,13 @@ body{
     align-items: center;
 }
 
+.Footer{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 0.5em;
+}
+
 @media screen and (min-width: 815px) {
     body{
         display: flex;

@@ -1,5 +1,6 @@
 import React from "react";
 import TinderCard from "react-tinder-card";
+import Footer from "./Footer";
 
 import Menu from "./Menu";
 
@@ -127,6 +128,7 @@ class App extends React.Component {
             <button onClick={this.smash}>smash</button>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
