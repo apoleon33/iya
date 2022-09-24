@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ImStatsBars, ImGithub, ImHome3 } from "react-icons/im";
+import { ImStatsBars, ImGithub } from "react-icons/im";
 import { BsFillGearFill } from "react-icons/bs";
 import logo from "../logo512.png";
 
