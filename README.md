@@ -2,9 +2,7 @@
 
 A Smash-Or-Pass website to recommend you waifus
 
-<img src="https://raw.githubusercontent.com/apoleon33/iya/master/frontend/public/static/logo192.png" align="right">
-<img src="https://badgen.net/github/license/apoleon33/iya"> <a href="https://github.com/apoleon33/iya/actions/workflows/node.js.yml"><img src="https://github.com/apoleon33/iya/actions/workflows/node.js.yml/badge.svg?branch=master"></a>
-<a href="https://github.com/apoleon33/iya/actions/workflows/docker-image.yml"><img src="https://github.com/apoleon33/iya/actions/workflows/docker-image.yml/badge.svg"></a><img src="https://badgen.net/github/dependabot/apoleon33/iya"> <img src="https://pyheroku-badge.herokuapp.com/?app=iyap">
+<img src="https://raw.githubusercontent.com/apoleon33/iya/master/frontend/public/static/logo192.png" align="right"><img src="https://badgen.net/github/license/apoleon33/iya"><a href="https://github.com/apoleon33/iya/actions/workflows/node.js.yml"><img src="https://github.com/apoleon33/iya/actions/workflows/node.js.yml/badge.svg?branch=master"></a><a href="https://github.com/apoleon33/iya/actions/workflows/docker-image.yml"><img src="https://github.com/apoleon33/iya/actions/workflows/docker-image.yml/badge.svg"></a><img src="https://badgen.net/github/dependabot/apoleon33/iya"> <img src="https://pyheroku-badge.herokuapp.com/?app=iyap">
 
 # Summary
 
