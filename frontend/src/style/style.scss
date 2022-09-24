@@ -20,6 +20,7 @@ body{
     text-align: center;
     border-bottom: solid $secondaryColor;
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
     
     a{
@@ -36,6 +37,16 @@ body{
         &:hover{
             color: $hoverText;
             transition: 600ms;
+        }
+    }
+
+    #logo{
+        width: 4vw;
+        height: 4vw;
+
+        &:hover{
+            filter: drop-shadow(0 0 0.45rem #fe3c72);
+            transition: 100ms;
         }
     }
 }
@@ -162,6 +173,10 @@ body{
         position: absolute;
         top: 0vh;
         align-items: center;
+        #logo{
+            width:2em;
+            height: 2em;
+        }
         svg{
             font-size: 1.5em;
         }

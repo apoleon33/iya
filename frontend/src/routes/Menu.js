@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ImStatsBars, ImGithub, ImHome3 } from "react-icons/im";
 import { BsFillGearFill } from "react-icons/bs";
+import logo from "../logo512.png";
 
 // https://bit.ly/3QJIHAS
 
@@ -26,13 +27,13 @@ export default class Menu extends React.Component {
   }
   render() {
     let app, stats, options, github;
+    app = <img src={logo} alt="Logo" id="logo" />;
     if (this.state.width < 815) {
-      app = <ImHome3 />;
+      // app = <ImHome3 />;
       stats = <ImStatsBars />;
       options = <BsFillGearFill />;
       github = <ImGithub />;
     } else {
-      app = <h2>Iya</h2>;
       stats = <h2>Statistics</h2>;
       options = <h2>Options</h2>;
       github = (
