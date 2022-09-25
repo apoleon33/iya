@@ -1,7 +1,8 @@
 import React from "react";
 import TinderCard from "react-tinder-card";
-import Footer from "./Footer";
+import { BsXLg, BsSuitHeartFill } from "react-icons/bs";
 
+import Footer from "./Footer";
 import Menu from "./Menu";
 
 let [numberOfSmash, numberOfPass] = [[0], [0]];
@@ -124,8 +125,13 @@ class App extends React.Component {
             </TinderCard>
           </main>
           <div id="buttonWrapper">
-            <button onClick={this.pass}>pass</button>
-            <button onClick={this.smash}>smash</button>
+            <button onClick={this.pass} id="cross-button">
+              {" "}
+              <BsXLg id="cross-icon" />
+            </button>
+            <button onClick={this.smash} id="valid-button">
+              <BsSuitHeartFill id="valid-icon" />
+            </button>
           </div>
         </div>
         <Footer />

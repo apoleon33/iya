@@ -101,13 +101,23 @@ body{
         
             &:hover{
                 cursor: pointer;
-        
-                border: 2px solid $secondaryColor;
-                color: $thirdColor;
+
+                #cross-icon{
+                    color: red;
+                }
+                
+                #valid-icon{
+                    color: green;
+                }
+                
                 background-color: $mainColor;
                 transition: 200ms;
             }
         }
+
+        #cross-button:hover{ border: 2px solid red; }
+        #valid-button:hover{ border: 2px solid green;}
+
     }
 }
 
