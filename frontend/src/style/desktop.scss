@@ -1,0 +1,67 @@
+@import "colorPalette";
+@media screen and (min-width: 815px) {
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    
+    }
+
+    .Menu{
+        width: 40vw;
+        #logo{
+            width: 4vw;
+            height: 4vw;
+    
+            &:hover{
+                filter: drop-shadow(0 0 0.45rem #fe3c72);
+                transition: 100ms;
+            }
+        }
+    }
+
+    .imageWrapper{
+        height: 40vw;
+        width: 40vw;
+    }
+
+
+    #buttonWRapper{
+        button{
+            width: 10vmin;
+            height: 5vmin;
+            border-radius: 10px;
+            background-color:  $thirdColor;
+
+            &:hover{
+                cursor: pointer;
+
+                #cross-icon{
+                    color: red;
+                }
+                
+                #valid-icon{
+                    color: green;
+                }
+                
+                background-color: $mainColor;
+                transition: 200ms;
+            }
+        }
+        #cross-button:hover{ border: 2px solid red; }
+        #valid-button:hover{ border: 2px solid green;}
+    }
+
+    .Options{
+        flex-direction: row;
+    }
+
+    .Statistics{
+        #textPreferredCharacter{
+            width: 40vw;
+        }
+    }
+
+
+}

@@ -1,10 +1,6 @@
-$mainColor: #222831 ;
-$secondaryColor: #393e46 ;
-$thirdColor: #fd7014;
-
-$font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;
-$text: #eeeeee;
-$hoverText: #eeeeeebb;
+@import "desktop";
+@import "mobile";
+@import "colorPalette";
 
 body{
     font-family: $font;
@@ -37,16 +33,6 @@ body{
         &:hover{
             color: $hoverText;
             transition: 600ms;
-        }
-    }
-
-    #logo{
-        width: 4vw;
-        height: 4vw;
-
-        &:hover{
-            filter: drop-shadow(0 0 0.45rem #fe3c72);
-            transition: 100ms;
         }
     }
 }
@@ -93,37 +79,17 @@ body{
         justify-content: space-between;
         
         button{
-            background-color:  $thirdColor;
             color: $text;
-            border-radius: 10px;
+            
             font-size: large;
             border: none;
 
             display: flex;
             justify-content: center;
             align-items: center;
-        
-            &:hover{
-                cursor: pointer;
-
-                #cross-icon{
-                    color: red;
-                }
-                
-                #valid-icon{
-                    color: green;
-                }
-                
-                background-color: $mainColor;
-                transition: 200ms;
             }
         }
-
-        #cross-button:hover{ border: 2px solid red; }
-        #valid-button:hover{ border: 2px solid green;}
-
     }
-}
 
 .Statistics{
     display: flex;
@@ -144,103 +110,6 @@ body{
     right: 0;
     padding: 0.5em;
 }
-
-@media screen and (min-width: 815px) {
-    body{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    
-    }
-
-    .Menu{
-        width: 40vw;
-    }
-
-    .imageWrapper{
-        height: 40vw;
-        width: 40vw;
-    }
-    button{
-        width: 10vmin;
-        height: 5vmin;
-    }
-
-    .Options{
-        flex-direction: row;
-    }
-
-    .Statistics{
-        #textPreferredCharacter{
-            width: 40vw;
-        }
-    }
-
-
-}
-
-@media screen and (max-width: 815px){
-
-    .Menu{
-        width: 100vw;
-        position: absolute;
-        top: 0vh;
-        align-items: center;
-        #logo{
-            width:2em;
-            height: 2em;
-        }
-        svg{
-            font-size: 1.5em;
-        }
-    }
-
-    #mainAndInfoWrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        height: 100vh;
-    }
-
-    .imageWrapper{
-        height: 100vw;
-        width: 90vw;
-    }
-
-    button{
-        width: 25vw;
-        height: 10vw;
-    }
-
-    .Options{
-        position: absolute;
-        top: 10vh;
-        text-align: center;
-        flex-direction: column;
-        width: 100vw;
-    }
-
-    .Statistics{
-        position: absolute;
-        top: 10vh;
-
-        #textPreferredCharacter{
-            width: 95vw;
-        }
-
-        .Thunderbolt{
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center;
-            align-items: center;
-        }
-
-    }
-}
-
-
 
 .image{
     width: 100%;

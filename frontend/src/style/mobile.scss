@@ -1,0 +1,92 @@
+@import "colorPalette";
+@media screen and (max-width: 815px){
+
+    .Menu{
+        width: 100vw;
+        position: absolute;
+        top: 0vh;
+        align-items: center;
+        #logo{
+            width:3em;
+            height: 3em;
+        }
+        svg{
+            font-size: 1.5em;
+        }
+    }
+
+    #mainAndInfoWrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100vh;
+    }
+
+    .imageWrapper{
+        height: 100vw;
+        width: 90vw;
+    }
+
+    #buttonWrapper{
+        button{
+            width: 25vw;
+            height: 10vw;
+            background-color: $mainColor;
+            svg{
+                font-size: 3em;
+            }
+        }
+        #cross-button:hover{
+            svg{
+                animation-name: onclickRed;
+                animation-duration: 650ms;
+                animation-timing-function: ease-in-out;
+            }
+        }
+        #valid-button:hover{
+            svg{
+                animation-name: onclickGreen;
+                animation-duration: 1000ms;
+                animation-timing-function: ease-in-out;
+            }
+        }
+    }
+
+    .Options{
+        position: absolute;
+        top: 10vh;
+        text-align: center;
+        flex-direction: column;
+        width: 100vw;
+    }
+
+    .Statistics{
+        position: absolute;
+        top: 10vh;
+
+        #textPreferredCharacter{
+            width: 95vw;
+        }
+
+        .Thunderbolt{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+
+    }
+}
+
+@keyframes onclickRed {
+    0%   {color:$hoverText;}
+    50%  {color:red; }
+    100% {color:$text;}
+}
+
+@keyframes onclickGreen {
+    0%   {color:$hoverText;}
+    50%  {color:green; }
+    100% {color:$text;}
+}
