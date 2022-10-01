@@ -16,6 +16,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       url: "",
+      origin: "",
     };
     this.smash = this.smash.bind(this);
     this.pass = this.pass.bind(this);
@@ -80,6 +81,7 @@ class App extends React.Component {
         this.setState({
           name: data.name,
           url: data.url,
+          origin: data.origin,
         });
       })
     );
@@ -119,7 +121,9 @@ class App extends React.Component {
                   alt={`Failed to render url ${this.state.url} :(`}
                 />
                 <div id="blurEffect">
-                  <h3 id="name">{this.state.name}</h3>
+                  <h3 id="name" className="textOnImage">
+                    {this.state.name} from {this.state.origin}
+                  </h3>
                 </div>
               </div>
             </TinderCard>

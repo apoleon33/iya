@@ -7,6 +7,7 @@ from flask import Flask, jsonify, request, render_template, make_response
 from random import choice, randint
 from multiprocessing import Process
 from os import system, environ
+import requests
 import sys
 
 PORT = 3033  # port where flask is launched
@@ -72,8 +73,12 @@ class CharacterList():
             listCharacterObject.remove(self.actualObject)
         self.iterationCount += 1
 
+    def get2Character(self):
+        return [randomCharacterInt(), randomCharacterInt()]
 
-app = Flask(__name__, template_folder="build", static_folder="build/static/")
+
+app = Flask(__name__, template_folder="build",
+            static_folder="build/static/")
 listUser = {}
 
 
@@ -151,9 +156,19 @@ def newImage():
                 Statistic()
             ]
             user = listUser[user]
+
+    # anime where the character operate
+    url = f"https://www.animecharactersdatabase.com/api_series_characters.php?character_id={user[0].actualObject.id}"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:105.0) Gecko/20100101 Firefox/105.0'
+    }
+    response = requests.get(url, headers=headers)
+    json_response = response.json()
+
     message = {
         'url': user[0].actualObject.image,
-        'name': user[0].actualObject.name
+        'name': user[0].actualObject.name,
+        'origin': json_response['origin']
     }
     resp = make_response(jsonify(message))
 
