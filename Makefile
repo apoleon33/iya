@@ -13,7 +13,7 @@ convert:
 	python3 backend/converter.py
 
 production: build convert
-	cd backend && gunicorn --bind 0.0.0.0:3033 server:app
+	cd backend && gunicorn --bind 0.0.0.0:5000 server:app
 
 docker:
 	sudo systemctl start docker
